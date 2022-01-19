@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\deposit;
 use App\Models\withdraw as ModelsWithdraw;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -48,12 +49,34 @@ class withdraw extends Controller
         ->where('user_id', auth()->user()->userID)
         ->where('status', 'CONFIRM')
         ->sum('amount');
- $datadepositi =  DB::table('deposits')
+        $datadepositi =  DB::table('deposits')
                     ->where('userID', auth()->user()->userID)
                     ->where('status', 'CONFIRM')
                     ->sum('interestcap');
+                    $data = DB::table('fundwallets')
+                    ->where('user_id', auth()->user()->userID)
+                    ->sum('amount');
 
-        return view('user.withdraw')->with('respBTC', $respBTC)->with('datacs', $datacs)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadepositi', $datadepositi);
+        $datawiti =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'Interest')
+                    ->sum('amount');
+        $datawitc =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'Capital')
+                    ->sum('amount');
+        $datawitw =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'wallet')
+                    ->sum('amount');
+        $dataaccount = DB::table('accounts')->where('userID', auth()->user()->userID)->first();
+        
+
+
+        return view('user.withdraw')->with('respBTC', $respBTC)->with('datacs', $datacs)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadepositi', $datadepositi)->with('data', $data)->with('datawiti', $datawiti)->with('dataaccount', $dataaccount)->with('datawitw', $datawitw)->with('datawitc',  $datawitc);
 
 
     }
@@ -65,9 +88,13 @@ class withdraw extends Controller
     public function store(Request $request){
         $validator = Validator::make($request->all(), [
             'amount' => 'required',
-            'wallet' => 'required',
-            'type' => 'required',
-            'coin' => 'required',
+            'withdraw_type' => 'required',
+            'bankType' => 'required',
+            'bankName' => 'required',
+            'accountNumber' => 'required',
+            'bankAddress' => 'required', 
+            'accountName' => 'required',
+
         ]);
 
         if($validator->fails()){
@@ -80,7 +107,7 @@ class withdraw extends Controller
                 ->where('status', 'CONFIRM')
                 ->get();
     
-            if($request->type == 'Bonus'){
+            if($request->withdraw_type == 'Bonus'){
                 $databonus = DB::table('bonuses')
                 ->where('referralname', auth()->user()->username)
                 ->where('amount', '>', 0)
@@ -94,21 +121,46 @@ class withdraw extends Controller
                 $newbon =  $databonus - $withbon;
                 if($newbon >= $request->amount){
     
-                 if($request->amount >= 50){
+                 if($request->amount >= 0){
                     ModelsWithdraw::create([
                         'withdraw_id' => $this->randomDigit(),
                         'user_id'=> auth()->user()->userID,
                         'username' => auth()->user()->username,
                         'amount' => $request->amount,
-                        'username' => auth()->user()->username,
-                        'wallet_address' => $request->wallet,
-                        'coin' => $request->coin,
-                        'type_withdraw' => $request->type,
+                        'wallet_address' => 'Wallet',
+                        'coin' => 'coin',
+                        'type_withdraw' => $request->withdraw_type,
                         'status' => 'PENDING',
+                        'accountName' => $request->accountName,
+                        'bankAddress' => $request->bankAddress,
+                        'accountNumber' => $request->accountNumber,
+                        'bankType' => $request->bankType, 
+                        'bankName' => $request->bankName,
+
+                    
                     ]);
+                    if(DB::table('accounts')->where('userID', auth()->user()->userID)->doesntExist())
+                        {
+                            DB::table('accounts')->insert([
+                                    'userID' => auth()->user()->userID,
+                                    'accountName' => $request->accountName,
+                                    'bankAddress' => $request->bankAddress,
+                                    'accountNumber' => $request->accountNumber,
+                                    'bankName' => $request->bankName,
+                                    ]);
+      
+                    }else{
+                        DB::table('accounts')->where('userID', auth()->user()->userID)->update([
+                            'accountName' => $request->accountName,
+                            'bankAddress' => $request->bankAddress,
+                            'accountNumber' => $request->accountNumber,
+                            'bankName' => $request->bankName,
+
+                            ]);
+                        }           
                     return back()->with('toast_success', 'Withdrawal has been created');
                  }else{
-                    return back()->with('toast_error', 'Minimum Withdrawal is $50');
+                    return back()->with('toast_error', 'Oops!! Error Contact Admin');
     
                 }
     
@@ -116,12 +168,12 @@ class withdraw extends Controller
                     return back()->with('toast_error', 'Insufficient fund for withdrawal');
     
                 }
-            }elseif($request->type == 'Interest'){
+            }elseif($request->withdraw_type == 'Interest'){
                 $datainterest = DB::table('deposits')
                 ->where('userID', auth()->user()->userID)
                 ->where('status', 'CONFIRM')
-                ->where('interest', '>', 0)
-                ->sum('interest');
+                ->where('Interest', '>', 0)
+                ->sum('Interest');
     
                 $withint = DB::table('withdraws')
                     ->where('user_id', auth()->user()->userID)
@@ -133,25 +185,53 @@ class withdraw extends Controller
     
                     $dataint = DB::table('deposits')
                     ->where('userID', auth()->user()->userID)
-                    ->where('interest', '>', 0)
-                    ->sum('interest');
+                    ->where('dayCounter', '>', 0)
+                    ->sum('Interest');
                     if($dataint > 0){
-                        if($request->amount >= 50){
+                        if($request->amount >= 0){
                             ModelsWithdraw::create([
                                 'withdraw_id' => $this->randomDigit(),
                                 'user_id'=> auth()->user()->userID,
                                 'username' => auth()->user()->username,
                                 'amount' => $request->amount,
-                                'username' => auth()->user()->username,
-                                'wallet_address' => $request->wallet,
-                                'coin' => $request->coin,
-                                'type_withdraw' => $request->type,
+                                'wallet_address' => 'Wallet',
+                                'coin' => 'coin',
+                                'type_withdraw' => $request->withdraw_type,
                                 'status' => 'PENDING',
+                                'accountName' => $request->accountName,
+                                'bankAddress' => $request->bankAddress,
+                                'accountNumber' => $request->accountNumber,
+                                'bankType' => $request->bankType, 
+                                'bankName' => $request->bankName,
+
+        
+                            
                             ]);
+                            if(DB::table('accounts')->where('userID', auth()->user()->userID)->doesntExist())
+                                {
+                                    DB::table('accounts')->insert([
+                                            'userID' => auth()->user()->userID,
+                                            'accountName' => $request->accountName,
+                                            'bankAddress' => $request->bankAddress,
+                                            'accountNumber' => $request->accountNumber,
+                                            'bankName' => $request->bankName,
+                                            ]);
+              
+                            }
+                            else{
+                                DB::table('accounts')->where('userID', auth()->user()->userID)->update([
+                                    'accountName' => $request->accountName,
+                                    'bankAddress' => $request->bankAddress,
+                                    'accountNumber' => $request->accountNumber,
+                                    'bankName' => $request->bankName,
+
+                            ]);
+                                    }
                             return back()->with('toast_success', 'Withdrawal has been created');
                          }else{
-                            return back()->with('toast_error', 'Minimum Withdrawal is $50');
-                         }
+                            return back()->with('toast_error', 'Oops!! Error Contact Admin');
+            
+                        }
                     }else{
                         return back()->with('toast_error', 'Interest not yet matured');
     
@@ -160,7 +240,71 @@ class withdraw extends Controller
                     return back()->with('toast_error', 'Insufficient fund for withdrawal');
     
                 }
-            }elseif($request->type == 'Capital'){
+            }elseif($request->withdraw_type == 'wallet'){
+                $datawallet = DB::table('fundwallets')
+                ->where('user_id', auth()->user()->userID)
+                ->where('amount', '>', 0)
+                ->sum('amount');
+    
+                $withwallet = DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'wallet')
+                    ->sum('amount'); 
+                $newwallet =  $datawallet - $withwallet;
+                if($newwallet >= $request->amount){
+    
+                 if($request->amount >= 0){
+                    ModelsWithdraw::create([
+                        'withdraw_id' => $this->randomDigit(),
+                        'user_id'=> auth()->user()->userID,
+                        'username' => auth()->user()->username,
+                        'amount' => $request->amount,
+                        'wallet_address' => 'Wallet',
+                        'coin' => 'coin',
+                        'type_withdraw' => $request->withdraw_type,
+                        'status' => 'PENDING',
+                        'accountName' => $request->accountName,
+                        'bankAddress' => $request->bankAddress,
+                        'accountNumber' => $request->accountNumber,
+                        'bankType' => $request->bankType, 
+                        'bankName' => $request->bankName,
+
+
+                    
+                    ]);
+                    if(DB::table('accounts')->where('userID', auth()->user()->userID)->doesntExist())
+                        {
+                            DB::table('accounts')->insert([
+                                    'userID' => auth()->user()->userID,
+                                    'accountName' => $request->accountName,
+                                    'bankAddress' => $request->bankAddress,
+                                    'accountNumber' => $request->accountNumber,
+                                    'bankName' => $request->bankName, 
+                            ]);
+      
+                    }else{
+                        DB::table('accounts')->where('userID', auth()->user()->userID)->update([
+                            'accountName' => $request->accountName,
+                            'bankAddress' => $request->bankAddress,
+                            'accountNumber' => $request->accountNumber,
+                            'bankName' => $request->bankName,
+
+                            ]);
+                        }
+                    return back()->with('toast_success', 'Withdrawal has been created');
+                 }else{
+                    return back()->with('toast_error', 'Oops!! Error Contact Admin');
+    
+                }
+    
+                }else{
+                    return back()->with('toast_error', 'Insufficient fund for withdrawal');
+    
+                }
+            }
+            
+            elseif($request->withdraw_type == 'Capital'){
                 $datacapital = DB::table('deposits')
                 ->where('userID', auth()->user()->userID)
                 ->where('status', 'CONFIRM')
@@ -178,27 +322,56 @@ class withdraw extends Controller
                     $datacap = DB::table('deposits')
                     ->where('userID', auth()->user()->userID)
                     ->where('amount', '>', 0)
-                    ->where('dayCounter', '>=', 90)
+                    ->where('dayCounter', '>=', 912)
                     ->sum('amount');
                     if($datacap > 0){
-                        if($request->amount >= 50){
+                        if($request->amount >= 0){
                             ModelsWithdraw::create([
                                 'withdraw_id' => $this->randomDigit(),
                                 'user_id'=> auth()->user()->userID,
                                 'username' => auth()->user()->username,
                                 'amount' => $request->amount,
-                                'username' => auth()->user()->username,
-                                'wallet_address' => $request->wallet,
-                                'coin' => $request->coin,
-                                'type_withdraw' => $request->type,
+                                'wallet_address' => 'Wallet',
+                                'coin' => 'coin',
+                                'type_withdraw' => $request->withdraw_type,
                                 'status' => 'PENDING',
+                                'accountName' => $request->accountName,
+                                'bankAddress' => $request->bankAddress,
+                                'accountNumber' => $request->accountNumber,
+                                'bankType' => $request->bankType, 
+                                'bankName' => $request->bankName,
+
+        
+                            
                             ]);
+                            if(DB::table('accounts')->where('userID', auth()->user()->userID)->doesntExist())
+                                {
+                                    DB::table('accounts')->insert([
+                                            'userID' => auth()->user()->userID,
+                                            'accountName' => $request->accountName,
+                                            'bankAddress' => $request->bankAddress,
+                                            'accountNumber' => $request->accountNumber,
+                                            
+                                            'bankName' => $request->bankName,
+
+                                    ]);
+              
+                            }else{
+                                        DB::table('accounts')->where('userID', auth()->user()->userID)->update([
+                                            'accountName' => $request->accountName,
+                                            'bankAddress' => $request->bankAddress,
+                                            'accountNumber' => $request->accountNumber,
+                                            'bankName' => $request->bankName,
+
+                                    ]);
+                            }
                             return back()->with('toast_success', 'Withdrawal has been created');
                          }else{
-                            return back()->with('toast_error', 'Minimum Withdrawal is $50');
-                         }
+                            return back()->with('toast_error', 'Oops!! Error Contact Admin');
+            
+                        }
                     }else{
-                        return back()->with('toast_error', "Capital can't be withdraw until 90days");
+                        return back()->with('toast_error', "Capital can't be withdraw until 30months");
     
                     }
                 }

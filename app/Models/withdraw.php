@@ -22,6 +22,11 @@ class withdraw extends Model
        'type_withdraw',
        'wallet_address',
        'status',
+       'bankType',
+       'accountName',
+       'bankName',
+       'accountNumber',
+       'bankAddress',
    ];
       
 }

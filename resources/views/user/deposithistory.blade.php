@@ -1,77 +1,158 @@
-@include("user.head")
+<!DOCTYPE html>
+<html lang="en">
 
-@include("user.header")
+<head>
+    <meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="keywords" content="admin, dashboard" />
+	<meta name="author" content="DexignZone" />
+	<meta name="robots" content="index, follow" />
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Sign up to your account. AboveFinex Investment Limited is the leading financial establishment providing high-quality international investment services" />
+	<meta property="og:title" content="Sign up to your account. AboveFinex Investment Limited is the leading financial establishment providing high-quality international investment services" />
+	<meta property="og:description" content="Sign up to your account. AboveFinex Investment Limited is the leading financial establishment providing high-quality international investment services" />
+	<meta property="og:image" content="social-image.png"/>
+	<meta name="format-detection" content="telephone=no">
+    <title>Investment History | AboveFinex </title>
+    <!-- Favicon icon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('assetsn/images/favicon.png ')}}">
+    <link href="{{ asset('assetsn/vendor/jqvmap/css/jqvmap.min.css') }}" rel="stylesheet">
+	<link rel="stylesheet" href="{{ asset('assetsn/vendor/chartist/css/chartist.min.css') }}">
+    <link href="{{ asset('assetsn/vendor/bootstrap-select/dist/css/bootstrap-select.min.css') }}" rel="stylesheet">
+	<link href="{{ asset('assetsn/vendor/owl-carousel/owl.carousel.css') }}" rel="stylesheet">
 	
-@include("user.sidebar")
+    <link href="{{ asset('assetsn/css/style.css') }}" rel="stylesheet">
+	
+</head>
+@include("user.header")
+  @include("user.sidebar")
 
-<div class="content-wrapper">
-    <div class="container-full">
+  <!--**********************************
+            Content body start
+        ***********************************-->
+        <div class="content-body">
+            <!-- row -->
+			<div class="container-fluid">
+				<!-- TradingView Widget BEGIN -->
+<div class="tradingview-widget-container">
+	<div class="tradingview-widget-container__widget"></div>
+	<div class="tradingview-widget-copyright"><a href="https://www.tradingview.com" rel="noopener" target="_blank">TradingView</div>
+	<script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async>
+	{
+	"symbols": [
+	  {
+		"proName": "FOREXCOM:SPXUSD",
+		"title": "S&P 500"
+	  },
+	  {
+		"proName": "FOREXCOM:NSXUSD",
+		"title": "US 100"
+	  },
+	  {
+		"proName": "FX_IDC:EURUSD",
+		"title": "EUR/USD"
+	  },
+	  {
+		"proName": "BITSTAMP:BTCUSD",
+		"title": "Bitcoin"
+	  },
+	  {
+		"proName": "BITSTAMP:ETHUSD",
+		"title": "Ethereum"
+	  },
+	  {
+		"description": "XAU/USD",
+		"proName": "OANDA:XAUUSD"
+	  },
+	  {
+		"description": "EUR/USD",
+		"proName": "FX:EURUSD"
+	  },
+	  {
+		"description": "GBP/USD",
+		"proName": "FX:GBPUSD"
+	  },
+	  {
+		"description": "GBP/JPY",
+		"proName": "FX:GBPJPY"
+	  },
+	  {
+		"description": "Matic",
+		"proName": "BINANCE:MATICUSDT"
+	  },
+	  {
+		"description": "USD/CAD",
+		"proName": "FX:USDCAD"
+	  }
+	],
+	"showSymbolLogo": true,
+	"colorTheme": "light",
+	"isTransparent": true,
+	"displayMode": "adaptive",
+	"locale": "en"
+  }
+	</script>
+  </div>
+  <!-- TradingView Widget END -->
+				<div class="text-right mb-4">
+					<a href="javascript:void(0);" class="btn btn-primary btn-rounded"> Fund Wallet</a>
+				</div>
+		
+				
 
-      <!-- Main content -->
-      <section class="content">			
-          <div class="row">
-        <div class="row">
-                <div class="col-xl-12 col-md-12 col-lg-12">
-                    <div class=" overflow-hidden bg-transparent card-crypto-scroll shadow-none">
-                        <div class="js-conveyor-example">
-                        <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script><div id="coinmarketcap-widget-marquee" coins="1,1027,825,1839,52,2010" currency="USD" theme="light" transparent="true" show-symbol-logo="true" width="1000000"></div>
-                            
-                        </div>
-                    </div>
-                </div>
-            </div>	
-          
-          </div>
-      </section>
-      <section class="content">
-        <div class="row">
-          <div class="col-lg-12 col-12">
-              <div class="box">
-                <div class="box-header with-border">
-                  <h4 class="box-title">Deposit Transactions</h4>
-                </div>
-                <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table no-margin table-hover">
-                          <thead>					
-                            <tr class="bg-dark">
-                              <th>Transaction ID</th>
-                              <th>Amount</th>
-                              <th>Time</th>
-                              <th>Plan</th>
-                              <th>Status</th>
-                            </tr>
-                          </thead>
-                          @foreach ( $data as $dat )
-                          <tbody>
-                            <tr>
-                              <td>
-                                <a href="#" class="text-primary hover-primary">
-                                  {{ $dat->transaction_id }}
-                                </a>
-                                
-                              </td>
-                              <td>{{ $dat->amount }}</td>
-                              <td>
-                                <time>{{ $dat->created_at }}</time>
-                              </td>
-                              <td>{{ $dat->plan }}</td>
-                              <td>{{ $dat->status }}</td>
-                            </tr>
-                           
-                        
-                          </tbody>
-                          @endforeach
+				<div class="row">
+					<div class="col-xl-12">
+					
+					</div>
+					
+					<div class="col-xl-12">
+						<div class="card">
+							<div class="card-header pb-2 d-block d-sm-flex flex-wrap border-0">
+								<div class="mb-3">
+									<h4 class="fs-20 text-black">Investment Activity</h4>
+								
+								</div>
+								
+							</div>
+							<div class="card-body tab-content p-0">
+								<div class="tab-pane active show fade">
+									<div class="table-responsive">
+										<table class="table shadow-hover short-one card-table border-no">
+                      @foreach ( $data as $dat )
 
-                        </table>
-                    </div>
-                </div>
-              </div>
-          </div>
-          
-      </div>
-    </section>
-    </div>
-</div> 
+											<tbody>
+												<tr>
+													
+													<td>
+														<span class="font-w600 text-black">{{ $dat->transaction_id }}</span>
+													</td>
+													<td>
+														<span class="text-black">{{ $dat->amount }}USD</span>
+													</td>
+													<td>
+														<span class="font-w600 text-black">{{ $dat->packages }}</span>
+                          </td>
+                          <td>
+														<span class="font-w600">{{ $dat->created_at }}</span>
+													</td>
+													<td><a class="btn-link text-success float-end" href="javascript:void(0);">{{ $dat->status }}</a></td>
+												</tr>
+												
+                      </tbody>
+                      @endforeach
 
-@include("user.footer")
+										</table>
+									</div>
+								</div>
+								
+                            </div>
+						</div>
+					</div>
+				</div>
+            </div>
+        </div>
+        <!--**********************************
+            Content body end
+        ***********************************-->
+
+  @include("user.footer")

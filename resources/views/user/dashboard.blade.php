@@ -78,14 +78,14 @@
 						<div class="wallet-card bg-secondary" style="background-image:url('{{asset('assetsn/images/pattern/pattern1.png')}}');">
 							<div class="head">
 								<p class="fs-14 text-white mb-0 op6 font-w100">My Wallet</p>
-								<span>${{ 0 + $data }}</span>
+								<span>${{ 0 + $data - $datawitw - $datadeposit}}</span>
 							</div>
 							<div class="wallet-footer">
 								<img src="{{asset('assetsn/images/card-logo.png')}}" alt="">
 							</div>
 						</div>
 					</div>
-					<div class="items">
+					{{-- <div class="items">
 						<div class="wallet-card bg-success" style="background-image:url('{{asset('assetsn/images/pattern/pattern2.png')}}');">
 							<div class="head">
 								<p class="fs-14 text-white mb-0 op6 font-w100">Total Deposit</p>
@@ -95,15 +95,15 @@
 								<img src="{{ asset('assetsn/images/card-logo2.png') }}" alt="">
 							</div>
 						</div>
-					</div>
+					</div> --}}
 					<div class="items">
-						<div class="wallet-card bg-primary" style="background-image:url('{{ asset('assetsn/images/pattern/pattern3.png') }}');">
+						<div class="wallet-card bg-success" style="background-image:url('{{ asset('assetsn/images/pattern/pattern2.png') }}');">
 							<div class="head">
 								<p class="fs-14 text-white mb-0 op6 font-w100">Total Investment</p>
-								<span>${{ $datadeposit + 0 }} </span>
+								<span>${{ $datadeposit + 0 - $datawitc}} </span>
 							</div>
 							<div class="wallet-footer">
-								<img src="{{ asset('assetsn/images/card-logo.png') }}" alt="">
+								<img src="{{ asset('assetsn/images/card-logo2.png') }}" alt="">
 							</div>
 						</div>
 					</div>

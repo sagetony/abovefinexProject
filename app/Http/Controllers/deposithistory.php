@@ -12,7 +12,7 @@ class deposithistory extends Controller
         $this->middleware('auth');
     }
     public function index(){
-        $data = DB::table('deposits')->where('userID', auth()->user()->userID)->get();
+        $data = DB::table('transactions')->where('userID', auth()->user()->userID)->get();
         return view('user.deposithistory')->with('data', $data);
 
     }

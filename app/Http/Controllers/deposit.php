@@ -57,10 +57,15 @@ class deposit extends Controller
                     ->where('referralname', auth()->user()->username)
                     ->sum('amount');
             
-  $datawiti =  DB::table('withdraws')
+            $datawiti =  DB::table('withdraws')
                     ->where('user_id', auth()->user()->userID)
                     ->where('status', 'CONFIRM')
                     ->where('type_withdraw', 'Interest')
+                    ->sum('amount');
+            $datawitc =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'Capital')
                     ->sum('amount');
 
        
@@ -72,9 +77,13 @@ class deposit extends Controller
          $data = DB::table('fundwallets')
                     ->where('user_id', auth()->user()->userID)
                     ->sum('amount');
+                    $datawitw =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'wallet')
+                    ->sum('amount');
 
-
-        return view('user.deposit')->with('dataps', $dataps)->with('datacs', $datacs)->with('respBTC', $respBTC)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('datawiti', $datawiti)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datapas', $datapas)->with('datadepositi', $datadepositi)->with('data', $data)->with('datas', $datas);
+        return view('user.deposit')->with('dataps', $dataps)->with('datacs', $datacs)->with('respBTC', $respBTC)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('datawiti', $datawiti)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datapas', $datapas)->with('datadepositi', $datadepositi)->with('data', $data)->with('datas', $datas)->with('datawitw', $datawitw)->with('datawitc',  $datawitc);
 
     }
     public function randomDigit(){
@@ -198,7 +207,7 @@ class deposit extends Controller
                                                     'plan'=>'Plan',
                                                     'planAmount'=> 'Planamount',
                                                     'interest'=> 0,
-                                                    'status'=>'PENDING',
+                                                    'status'=>'CONFIRM',
                                                     'dayCounter'=> 0,
                                                     'interestcap' => 0,
                     
@@ -322,7 +331,7 @@ class deposit extends Controller
                                             'plan'=>'Plan',
                                             'planAmount'=> 'Planamount',
                                             'interest'=> 0,
-                                            'status'=>'PENDING',
+                                            'status'=>'CONFIRM',
                                             'dayCounter'=> 0,
                                             'interestcap' => 0,
             
@@ -443,7 +452,7 @@ class deposit extends Controller
                                             'plan'=>'Plan',
                                             'planAmount'=> 'Planamount',
                                             'interest'=> 0,
-                                            'status'=>'PENDING',
+                                            'status'=>'CONFIRM',
                                             'dayCounter'=> 0,
                                             'interestcap' => 0,
             

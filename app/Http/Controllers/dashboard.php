@@ -54,7 +54,19 @@ class dashboard extends Controller
                     ->where('status', 'CONFIRM')
                     ->where('type_withdraw', 'Interest')
                     ->sum('amount');
-        return view('user.dashboard')->with('respBTC', $respBTC)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datdeposits', $datdeposits)->with('datadepositi', $datadepositi)->with('datawiti', $datawiti)->with('data', $data);
+
+                    $datawitc =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'Capital')
+                    ->sum('amount');
+
+                $datawitw =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'wallet')
+                    ->sum('amount');
+        return view('user.dashboard')->with('respBTC', $respBTC)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datdeposits', $datdeposits)->with('datadepositi', $datadepositi)->with('datawiti', $datawiti)->with('data', $data)->with('datawitw', $datawitw)->with('datawitc',  $datawitc);
 
     }
 }

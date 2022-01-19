@@ -63,7 +63,7 @@ Route::get('/withdraw', [withdraw::class, 'index'])->name('withdraw');
 Route::post('/withdraw', [withdraw::class, 'store'])->name('withdraw');
 Route::any('/withdrawal', [withdraw::class, 'redi'])->name('withdrawal');
 
-Route::get('/withdrawthistory', [withdrawhistory::class, 'index'])->name('withdrawhistory');
+Route::get('/withdrawhistory', [withdrawhistory::class, 'index'])->name('withdrawhistory');
 Route::get('/referral', [referral::class, 'index'])->name('referral');
 
 Route::get('/support', [support::class, 'index'])->name('support');

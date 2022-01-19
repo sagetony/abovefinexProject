@@ -61,6 +61,13 @@ class register extends Controller
 
                 
                 ]);
+                DB::table('accounts')->insert([
+                    'userID' => auth()->user()->userID,
+                    'accountName' => '',
+                    'bankAddress' => '',
+                    'accountNumber' => '',
+                    'bankName' => '',
+                    ]);
                 // $user->attachRole('user');
                 // email......
                 $dat = DB::table('users')->where('username', $request->username)->first();
