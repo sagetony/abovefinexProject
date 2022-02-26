@@ -41,8 +41,19 @@ class fundController extends Controller
                     ->where('status', 'CONFIRM')
                     ->where('type_withdraw', 'Interest')
                     ->sum('amount');
+                    $datasignal =  DB::table('signalbuys')
+                    ->where('userID', auth()->user()->userID)
+                    ->sum('amount');
+                $datarobot =  DB::table('robots')
+                    ->where('userID', auth()->user()->userID)
+                    ->sum('amount');
+                    $datawitw =  DB::table('withdraws')
+                    ->where('user_id', auth()->user()->userID)
+                    ->where('status', 'CONFIRM')
+                    ->where('type_withdraw', 'wallet')
+                    ->sum('amount');
 
-        return view ('user.fund')->with('data', $data)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datawiti', $datawiti);;
+        return view ('user.fund')->with('data', $data)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datawiti', $datawiti)->with('datarobot', $datarobot)->with('datasignal', $datasignal)->with('datawitw', $datawitw);
 
     }
 

@@ -61,12 +61,19 @@ class dashboard extends Controller
                     ->where('type_withdraw', 'Capital')
                     ->sum('amount');
 
-                $datawitw =  DB::table('withdraws')
+            $datawitw =  DB::table('withdraws')
                     ->where('user_id', auth()->user()->userID)
                     ->where('status', 'CONFIRM')
                     ->where('type_withdraw', 'wallet')
                     ->sum('amount');
-        return view('user.dashboard')->with('respBTC', $respBTC)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datdeposits', $datdeposits)->with('datadepositi', $datadepositi)->with('datawiti', $datawiti)->with('data', $data)->with('datawitw', $datawitw)->with('datawitc',  $datawitc);
+            $datarobot =  DB::table('robots')
+                    ->where('userID', auth()->user()->userID)
+                    ->sum('amount');
+            $datasignal =  DB::table('signalbuys')
+                    ->where('userID', auth()->user()->userID)
+                    ->sum('amount');
+                    
+        return view('user.dashboard')->with('respBTC', $respBTC)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datdeposits', $datdeposits)->with('datadepositi', $datadepositi)->with('datawiti', $datawiti)->with('data', $data)->with('datawitw', $datawitw)->with('datawitc',  $datawitc)->with('datarobot', $datarobot)->with('datasignal', $datasignal);
 
     }
 }

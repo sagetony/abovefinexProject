@@ -1,7 +1,7 @@
-@include('admin.head');
+@include('admin.head')
 
-@include('admin.header');
-@include('admin.sidebar');
+@include('admin.header')
+@include('admin.sidebar')
 <!-- main-sidebar -->
 <!-- main-content -->
 <div class="main-content app-content">
@@ -104,10 +104,10 @@
                                     <thead>
                                         <tr>
                                             <th>Transaction ID</th>
-                                            <th>Username</th>
+                                            <th>FullName</th>
+                                            <th>Email</th>
                                             <th>Amount</th>
-                                            <th>Package</th>
-                                            <th>Interest</th>
+                                            
                                             <th>Status</th>
                                             <th>Date</th>
                                             <th>Action</th>
@@ -120,16 +120,15 @@
                                     <tbody>
                                         <tr class="border-bottom">
                                             <td>{{ $datadeposit->transaction_id}}</td>
-                                            <td>{{ $datadeposit->username}}</td>
+                                            <td>{{ $datadeposit->name}}</td>
+                                            <td>{{ $datadeposit->email }}</td>
                                             <td>{{ $datadeposit->amount }}</td>
-                                            <td>{{ $datadeposit->plan }}</td>
-                                            <td>{{ $datadeposit->interest }}</td>
                                             <td class=""><span class="shadow-none badge outline-badge-primary"></span>{{ $datadeposit->status }}</td>
                                             <td>{{ $datadeposit->created_at }}</td>
 
                                             <td>
                                                 <div class="btn-group">
-                                                    @if($datadeposit->status =='CONFIRM')
+                                                    @if($datadeposit->status =='success')
                                                            <button class='btn btn-success' data-toggle='modal' title='Approve Transaction' data-target='#myModalLOCK{{$datadeposit->transaction_id}}'><i class='fa fa-unlock'></i></button>
                                                     @else
                                                         <button class='btn btn-danger' data-toggle='modal' title='Pending Transaction' data-target='#myModalUNLOCK{{ $datadeposit->transaction_id }}'><i class='fa fa-lock'></i></button>
@@ -235,7 +234,7 @@
                                     @endforeach
 
                                 </table>
-
+                                {{ $datadeposits->links() }}
                             </div>
 
                         </div>

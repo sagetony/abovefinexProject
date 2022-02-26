@@ -35,7 +35,7 @@ class regadminController extends Controller
                     'email'=> $request->email,
                     'password'=> Hash::make($request->password),
                     'role' => 'Superadmin',
-                    'username'=> '',
+                    'username'=> $request->username,
                    
 
                 ]);
@@ -46,7 +46,8 @@ class regadminController extends Controller
                 //         Mail::to($request->email)->send(new EmailVerification($details));
                 //         // return 'email sent';
                     }
-                return back()->withToastSuccess('Please check your email and activate your account');
+                    return redirect()->route('adminlogin')->withToastSuccess('Registration Successful');
+               
 
         }
     }

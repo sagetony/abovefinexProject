@@ -74,12 +74,18 @@ class withdraw extends Controller
                     ->sum('amount');
         $dataaccount = DB::table('accounts')->where('userID', auth()->user()->userID)->first();
         
-
-
-        return view('user.withdraw')->with('respBTC', $respBTC)->with('datacs', $datacs)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadepositi', $datadepositi)->with('data', $data)->with('datawiti', $datawiti)->with('dataaccount', $dataaccount)->with('datawitw', $datawitw)->with('datawitc',  $datawitc);
-
+        $datarobot =  DB::table('robots')
+        ->where('userID', auth()->user()->userID)
+        ->sum('amount');
+        
+        $datasignal =  DB::table('signalbuys')
+                ->where('userID', auth()->user()->userID)
+                ->sum('amount');
+               
+        return view('user.withdraw')->with('respBTC', $respBTC)->with('datacs', $datacs)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadepositi', $datadepositi)->with('data', $data)->with('datawiti', $datawiti)->with('dataaccount', $dataaccount)->with('datawitw', $datawitw)->with('datawitc',  $datawitc)->with('datasignal', $datasignal)->with('datarobot', $datarobot);
 
     }
+    
     public function randomDigit(){
         $pass = substr(str_shuffle("0123456789abcDEFGHIJnostXYZ"), 0, 15);
         return $pass;

@@ -4,9 +4,11 @@ use App\Http\Controllers\addinterestController;
 use App\Http\Controllers\adminController;
 use App\Http\Controllers\admindepositController;
 use App\Http\Controllers\adminfundController;
+use App\Http\Controllers\admininvestController;
 use App\Http\Controllers\adminlogoutController;
 use App\Http\Controllers\adminprofileController;
 use App\Http\Controllers\adminrefController;
+use App\Http\Controllers\adminsignalbuyController;
 use App\Http\Controllers\adminsupport;
 use App\Http\Controllers\adminuserController;
 use App\Http\Controllers\adminwithController;
@@ -26,7 +28,13 @@ use App\Http\Controllers\referral;
 use App\Http\Controllers\regadminController;
 use App\Http\Controllers\register;
 use App\Http\Controllers\resetpassword;
+use App\Http\Controllers\robot;
+use App\Http\Controllers\signal;
+use App\Http\Controllers\signalbuy;
+use App\Http\Controllers\smsController;
 use App\Http\Controllers\support;
+use App\Http\Controllers\tradingactivation;
+use App\Http\Controllers\transferController;
 use App\Http\Controllers\walletadmincontroller;
 use App\Http\Controllers\withdraw;
 use App\Http\Controllers\withdrawhistory;
@@ -55,6 +63,16 @@ Route::post('/profilepass', [profile::class, 'updatepassword'])->name('profilepa
 Route::get('/deposit', [deposit::class, 'index'])->name('deposit');
 Route::post('/deposit', [deposit::class, 'store'])->name('deposit');
 
+Route::get('/signalbuy', [signalbuy::class, 'index'])->name('signalbuy');
+Route::post('/signalbuy', [signalbuy::class, 'store'])->name('signalbuy');
+
+
+Route::get('/signal', [signal::class, 'index'])->name('signal');
+Route::post('/signal', [signal::class, 'store'])->name('signal');
+
+Route::get('/transfer', [transferController::class, 'index'])->name('transfer');
+Route::post('/transfer', [transferController::class, 'store'])->name('transfer');
+
 Route::get('/payment', [payment::class, 'index'])->name('payment');
 
 Route::get('/deposithistory', [deposithistory::class, 'index'])->name('deposithistory');
@@ -82,6 +100,14 @@ Route::get('/logout', [logout::class, 'logout'])->name('logout');
 Route::any('/wallet', [fundController::class, 'index'])->name('fund');
 Route::post('/verify', [fundController::class, 'verify'])->name('verify');
 
+Route::get('/robot', [robot::class, 'index'])->name('robot');
+Route::post('/robotactivation', [robot::class, 'robotactivation'])->name('robotactivation');
+Route::get('/robotrenew', [robot::class, 'store'])->name('robotrenew');
+
+Route::get('/tradingactivation', [tradingactivation::class, 'index'])->name('tradingactivation');
+Route::post('/tradingactivation', [tradingactivation::class, 'store'])->name('tradingactivation');
+
+
 // Route::get('/', function(){
 //         return view('user.home');
 // })->name('home');
@@ -107,6 +133,9 @@ Route::get('/email', function(){
     return view('email.emailverify');
 })->name('email');
 
+Route::get('admin/signal', [smsController::class, 'index'])->name('sms');
+Route::post('admin/signal', [smsController::class, 'sendSmsNotificaition'])->name('sms');
+
 Route::get('/admin/register', [regadminController::class, 'index'])->name('adminregister');
 Route::post('/admin/register', [regadminController::class, 'store'])->name('adminregister');
 
@@ -129,10 +158,13 @@ Route::get('/admin/users/', [adminuserController::class, 'index'])->name('adminu
 Route::get('/admin/users/', [adminuserController::class, 'index'])->name('adminusers');
 Route::get('/admin/users/', [adminuserController::class, 'index'])->name('adminusers');
 
-Route::get('admin/deposit', [admindepositController::class, 'index'])->name('admindeposit');
-Route::post('admin/deposit', [admindepositController::class, 'store'])->name('admindeposit');
+Route::get('admin/depositinterest', [admindepositController::class, 'index'])->name('admindeposit');
+Route::post('admin/depositinterest', [admindepositController::class, 'store'])->name('admindeposit');
 
-Route::get('/admin/funding', [adminfundController::class, 'index'])->name('adminfunding');
+Route::get('/admin/walletfunds', [adminfundController::class, 'index'])->name('adminfunding');
+Route::get('/admin/investfunds', [admininvestController::class, 'index'])->name('admininvest');
+Route::get('/admin/signalfunds', [adminsignalbuyController::class, 'index'])->name('adminsignalbuy');
+
 
 Route::get('/admin/support', [adminsupport::class, 'index'])->name('adminsupport');
 Route::post('/admin/support', [adminsupport::class, 'sendMail'])->name('adminsupport');

@@ -15,7 +15,7 @@
         <title> Abovefinex  Admin Dashboard </title>
 
 		<!-- Favicon -->
-		<link rel="icon" href="" type="image/x-icon"/>
+		<link rel="icon" href=""{{ asset("images/log.png") }}" type="image/x-icon"/>
 
 		<!-- Icons css -->
 		<link href="{{ asset('assetsa/plugins/icons/icons.css') }}" rel="stylesheet">

@@ -18,5 +18,6 @@ class bonus extends Model
         'referralname',
         'referee',
         'amount',
+        'type',
     ];
 }

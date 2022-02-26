@@ -95,7 +95,7 @@
   </div>
   <!-- TradingView Widget END -->
 				<div class="text-right mb-4">
-					<a href="javascript:void(0);" class="btn btn-primary btn-rounded"> Fund Wallet</a>
+					<a href="{{ route('fund') }}" class="btn btn-primary btn-rounded"> Fund Wallet</a>
 				</div>
 		
 				
@@ -118,7 +118,7 @@
 								<div class="tab-pane active show fade">
 									<div class="table-responsive">
 										<table class="table shadow-hover short-one card-table border-no">
-                      @foreach ( $data as $dat )
+                     						 @foreach ( $data as $dat )
 
 											<tbody>
 												<tr>
@@ -131,15 +131,18 @@
 													</td>
 													<td>
 														<span class="font-w600 text-black">{{ $dat->packages }}</span>
-                          </td>
-                          <td>
+													</td>
+													<td>
+														<span class="font-w600 text-black">{{ $dat->interest }}</span>
+													</td>
+													<td>
 														<span class="font-w600">{{ $dat->created_at }}</span>
 													</td>
 													<td><a class="btn-link text-success float-end" href="javascript:void(0);">{{ $dat->status }}</a></td>
 												</tr>
 												
-                      </tbody>
-                      @endforeach
+											</tbody>
+											@endforeach
 
 										</table>
 									</div>

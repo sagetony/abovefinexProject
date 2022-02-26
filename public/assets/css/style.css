@@ -404,7 +404,9 @@ img {
 
 .hide {
   display: none !important; }
-
+  .pagination {
+    margin-top: 30px;
+}
 .no-border {
   border: 0 !important; }
 

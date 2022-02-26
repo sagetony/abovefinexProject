@@ -71,14 +71,14 @@
   </div>
   <!-- TradingView Widget END -->
 				<div class="text-right mb-4">
-					<a href="javascript:void(0);" class="btn btn-primary btn-rounded"> Fund Wallet</a>
+					<a href="{{ route('fund') }}" class="btn btn-primary btn-rounded"> Fund Wallet</a>
 				</div>
 				<div class="cards-slider owl-carousel mb-4"> 
 					<div class="items">
 						<div class="wallet-card bg-secondary" style="background-image:url('{{asset('assetsn/images/pattern/pattern1.png')}}');">
 							<div class="head">
 								<p class="fs-14 text-white mb-0 op6 font-w100">My Wallet</p>
-								<span>${{ 0 + $data - $datawitw - $datadeposit}}</span>
+								<span>${{ 0 + $data - $datawitw - $datadeposit - $datarobot-  $datasignal}}</span>
 							</div>
 							<div class="wallet-footer">
 								<img src="{{asset('assetsn/images/card-logo.png')}}" alt="">

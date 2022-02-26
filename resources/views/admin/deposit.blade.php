@@ -1,7 +1,7 @@
-@include('admin.head');
+@include('admin.head')
 
-@include('admin.header');
-@include('admin.sidebar');
+@include('admin.header')
+@include('admin.sidebar')
 <!-- main-content -->
 <div class="main-content app-content">
 
@@ -71,7 +71,7 @@
         <div class="left-content">
             <div class="d-flex">
                 <i class="fas fa-donate text-muted hover-cursor"></i>
-                <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Deposit&nbsp;</p>
+                <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Deposit Interest&nbsp;</p>
                 
             </div>
         </div>
@@ -92,7 +92,7 @@
                             <i class="fas fa-donate text-warning"></i>
                         </div>
                         <div class="media-body">
-                            <h3>Admin Funding</h3>
+                            <h3>Admin Interest Funding</h3>
                         </div>
                         
                     </div>
@@ -114,49 +114,27 @@
                                     <div class="row">
                                         <div class="col-md-12 col-lg-12 col-xl-12 mx-auto d-block">
                                             <div class="card card-body pd-10 pd-md-20 border shadow-none">
-                                                <h5 class="card-title mg-b-20">Funding</h5>
+                                                <h5 class="card-title mg-b-20">Interest Funding</h5>
                                                 <form action="{{ route('admindeposit') }}" method="post">
                                                 @csrf
-                                                <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Username</label> <input class="form-control"name="username" type="text" id="username">
-                                                </div>
-                                                <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Coin</label>
-                                                    <select class="form-control mb-3" name="coin" id="package">
-            
-                                                       <option selected="">Select Coin</option>
-                                                       @foreach ($datacs as $dac)
-                                                        <option value="{{ $dac->coinName }}">{{ $dac->coinName}}</option>
-                                                       @endforeach
-                                                    </select>
-                                                 </div>
+                                                
+                                                
                                                  <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Coin</label>
+                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Investment Package</label>
                                                     <select class="form-control mb-3" name="package" id="package">
             
-                                                       <option selected="">Investment Package</option>
+                                                       
                                                        @foreach ($datapas as $datapa)
                                                         <option value="{{ $datapa->pack_name }}">{{ $datapa->pack_name}}</option>
                                                        @endforeach
                                                     </select>
                                                  </div>
+                                                 
                                                  <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Coin</label>
-                                                    <select class="form-control mb-3" name="plan" id="plan">
-            
-                                                       <option selected="">Investment Plan</option>
-                                                       @foreach ($dataps as $datap)
-                                                        <option value="{{ $datap->planName }}">{{ $datap->planName}}</option>
-                                                       @endforeach
-                                                    </select>
-                                                 </div>
-                                                 <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Interest Rate</label> <input class="form-control" name="planAmount" type="text" id="planAmount">
+                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Interest Rate</label> <input class="form-control" name="plan" type="text" id="plan">
                                                 </div>
-                                                <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">Amount ($)</label> <input class="form-control"name="amount" type="text" id="amount">
-                                                </div>
-                                                <button class="btn btn-main-primary btn-block" name="sub" type="submit">Invest</button>
+                                               
+                                                <button class="btn btn-main-primary btn-block" name="sub" type="submit">Fund</button>
                                                 </form>
                                             </div>
                                         </div>

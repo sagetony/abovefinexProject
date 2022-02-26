@@ -28,6 +28,6 @@ class EmailWithdraw extends Mailable
      */
     public function build()
     {
-        return $this->subject('Wyre Investment and Financial Management Limited Notification')->view('email.withdraw');
+        return $this->subject('Abovefinex Financial Management Limited Notification')->view('email.withdraw');
     }
 }

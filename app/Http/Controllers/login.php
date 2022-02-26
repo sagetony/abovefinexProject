@@ -37,6 +37,13 @@ class login extends Controller
         if(Auth::attempt($loginauth)){
             if(auth()->user()->email_verified == 'YES'){
                 if(auth()->user()->status == 'ACTIVE'){
+                    DB::table('accounts')->insert([
+                        'userID' => auth()->user()->userID,
+                        'accountName' => '',
+                        'bankAddress' => '',
+                        'accountNumber' => '',
+                        'bankName' => '',
+                        ]);
                     return redirect()->route('dashboard');
     
                 }else{

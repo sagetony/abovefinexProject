@@ -1,7 +1,7 @@
-@include('admin.head');
+@include('admin.head')
 
-@include('admin.header');
-@include('admin.sidebar');
+@include('admin.header')
+@include('admin.sidebar')
 <!-- main-sidebar -->
 <!-- main-content -->
 <div class="main-content app-content">
@@ -233,6 +233,7 @@
                                     @endforeach
 
                                 </table>
+                                {{ $datawithdraws->links() }}
 
                             </div>
 

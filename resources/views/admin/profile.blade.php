@@ -1,7 +1,7 @@
-@include('admin.head');
+@include('admin.head')
 
-@include('admin.header');
-@include('admin.sidebar');
+@include('admin.header')
+@include('admin.sidebar')
 <!-- main-content -->
 <div class="main-content app-content">
 
@@ -109,122 +109,9 @@
 </div>
 <!-- /row -->
             
-<div class="col-lg-12 col-md-12">
-						<div class="card">
-							<div class="card-body">
-								<div class="row">
-									<div class="col-md-12 col-lg-12 col-xl-6 mx-auto d-block">
-										<div class="card card-body pd-10 pd-md-20 border shadow-none">
-                                            <h5 class="card-title mg-b-20">Your Account Details</h5>
-                                            <form action="{{ route('adminprofile') }}" method="post">
-                                                @csrf
-                                                <div class="form-group">
-                                                    <label class="main-content-label tx-11 tx-medium tx-gray-600">BTC  Wallet</label> <input class="form-control"  type="text" value="{{ $coin[0]->coinAddress}}" name="wallet">
-                                                </div>
-                                                
-                                                <button class="btn btn-main-primary btn-block" name="sub" type="submit">Update Account Details</button>
-                                            </form>
-											
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
 
-</div>
-<div class="col-lg-12 col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-6 mx-auto d-block">
-                    <div class="card card-body pd-10 pd-md-20 border shadow-none">
-                        <form action="{{ route('ethwallet') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">ETH  Wallet</label> <input class="form-control"  type="text" value="{{ $coine[0]->coinAddress }}" name="wallet">
-                            </div>
-                            
-                            <button class="btn btn-main-primary btn-block" name="sub" type="submit">Update Account Details</button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-</div>
-<div class="col-lg-12 col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-6 mx-auto d-block">
-                    <div class="card card-body pd-10 pd-md-20 border shadow-none">
-                        <form action="{{ route('ltcwallet') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">BCH Wallet</label> <input class="form-control"  type="text" value="{{ $coinbc[0]->coinAddress }}" name="wallet">
-                            </div>
-                            
-                            <button class="btn btn-main-primary btn-block" name="sub" type="submit">Update Account Details</button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
-</div>
-<div class="col-lg-12 col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-6 mx-auto d-block">
-                    <div class="card card-body pd-10 pd-md-20 border shadow-none">
-                        <form action="{{ route('bnbwallet') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">BNB  Wallet</label> <input class="form-control"  type="text" value="{{ $coinb[0]->coinAddress }}" name="wallet">
-                            </div>
-                            
-                            <button class="btn btn-main-primary btn-block" name="sub" type="submit">Update Account Details</button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
-<div class="col-lg-12 col-md-12">
-    <div class="card">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-md-12 col-lg-12 col-xl-6 mx-auto d-block">
-                    <div class="card card-body pd-10 pd-md-20 border shadow-none">
-                        <form action="{{ route('xrpwallet') }}" method="post">
-                            @csrf
-                            <div class="form-group">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">USDT  Wallet</label> <input class="form-control"  type="text" value="{{ $coinu[0]->coinAddress }}" name="wallet">
-                            </div>
-                            
-                            <button class="btn btn-main-primary btn-block" name="sub" type="submit">Update Account Details</button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-</div>
 {{-- <div class="col-lg-12 col-md-12">
 						<div class="card">
 							<div class="card-body">

@@ -13,8 +13,9 @@ class adminuserController extends Controller
     }
 
     public function index(Request $request){
-                $datausers = DB::table('users')
-                ->get();
+                $datausers = DB::table('users')->orderByDesc('id')
+                ->paginate(20);
+
                 if(isset($request->lockid)){
                     DB::table('users')
                     ->where('userID', $request->lockid)

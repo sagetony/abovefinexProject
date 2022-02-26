@@ -1,7 +1,7 @@
-@include('admin.head');
+@include('admin.head')
 
-@include('admin.header');
-@include('admin.sidebar');
+@include('admin.header')
+@include('admin.sidebar')
 <!-- main-sidebar -->
 <!-- main-content -->
 <div class="main-content app-content">
@@ -88,7 +88,7 @@
     
     <!-- row -->
     <div class="row row-sm">
-    <div class="col-xl-4 col-lg-6 col-md-12">
+        <div class="col-xl-4 col-lg-6 col-md-12">
             <div class="card crypto crypt-primary overflow-hidden">
                 <div class="card-body iconfont text-left">
                     <div class="media">
@@ -102,7 +102,7 @@
                             <div>
 
                                     
-                                <span><h5> ${{0 +  $datad }} </h5> </span>
+                                <span><h5> ${{ 0 + $dataw - $datawitw - $datadeposit}} </h5> </span>
                                    
                                     
                                 <span><h5>  </h5> </span>
@@ -114,10 +114,86 @@
                 </div>
                 <div class="flot-wrapper">
                         <div class="flot-chart ht-150  mt-0" id="flotChart5"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card crypto crypt-danger overflow-hidden">
+                <div class="card-body iconfont text-left">
+                    <div class="media">
+                        <div class="coin-logo bg-danger-transparent">
+                            <i class="fa fa-users text-danger"></i>
+                        </div>
+                        <div class="media-body">
+                            <h5>Total Investment</h5>
+                        </div>
+                        <div class="card-body-top">
+                            <div>
+
+                                <span><h5> ${{ $datadeposit + 0 - $datawitc}} </h5> </span>
+                            </div>
+                            
+                        </div>
+                        
+                    </div>
+                    <div class="flot-wrapper">
+                        <div class="flot-chart ht-150  mt-0" id="flotChart5"></div>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card crypto crypt-warning overflow-hidden">
+                <div class="card-body iconfont text-left">
+                    <div class="media">
+                        <div class="coin-logo bg-warning-transparent">
+                            <i class="fas fa-money-bill-alt text-warning"></i>
+                        </div>
+                        <div class="media-body">
+                            <h5>Total Withdraw</h5>
+                        </div>
+                        <div class="card-body-top">
+                            <div>
+                                <span><h5> ${{( $datawit + 0) }}</h5> </span>
+                                    <span><h5>  </h5> </span>    
+    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="flot-wrapper">
+                        <div class="flot-chart ht-150  mt-0" id="flotChart5"></div>
                     </div>
             </div>
         </div>
-       
+        <div class="col-xl-4 col-lg-6 col-md-12">
+            <div class="card crypto crypt-warning overflow-hidden">
+                <div class="card-body iconfont text-left">
+                    <div class="media">
+                        <div class="coin-logo bg-warning-transparent">
+                            <i class="fas fa-money-bill-alt text-warning"></i>
+                        </div>
+                        <div class="media-body">
+                            <h5>Total Interest</h5>
+                        </div>
+                        <div class="card-body-top">
+                            <div>
+                                <span><h5> ${{ $datainterest + 0 - $datawiti }}</h5> </span>
+                                    <span><h5>  </h5> </span>    
+    
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+                <div class="flot-wrapper">
+                        <div class="flot-chart ht-150  mt-0" id="flotChart5"></div>
+                </div>
+            </div>
+        </div>
         <div class="col-xl-4 col-lg-6 col-md-12">
             <div class="card crypto crypt-danger overflow-hidden">
                 <div class="card-body iconfont text-left">
@@ -144,36 +220,9 @@
                 </div>
             </div>
         </div>
-        
-        <div class="col-xl-4 col-lg-6 col-md-12">
-            <div class="card crypto crypt-warning overflow-hidden">
-                <div class="card-body iconfont text-left">
-                    <div class="media">
-                        <div class="coin-logo bg-warning-transparent">
-                            <i class="fas fa-money-bill-alt text-warning"></i>
-                        </div>
-                        <div class="media-body">
-                            <h5>Total Withdraw</h5>
-                        </div>
-                        <div class="card-body-top">
-                            <div>
-                                <span><h5> ${{ $datai + 0 }}</h5> </span>
-                                    <span><h5>  </h5> </span>    
-    
-                            </div>
-                            
-                        </div>
-                    
-                </div>
-                <div class="flot-wrapper">
-                        <div class="flot-chart ht-150  mt-0" id="flotChart5"></div>
-                    </div>
-            </div>
-        </div>
     </div>
     <!-- /row -->
    
-    
     
     <div class="col-lg-6 col-md-12">
         <div class="card">
@@ -207,9 +256,7 @@
                             <div class="form-group">
                                 <label class="main-content-label tx-11 tx-medium tx-gray-600">Phone Number</label> <input class="form-control"name="phone" type="text" id="phone"  value="{{ $data[0]->phone }}">
                             </div>
-                            <div class="form-group">
-                                <label class="main-content-label tx-11 tx-medium tx-gray-600">Password</label> <input class="form-control"name="password" type="text" id="password" value="{{ $data[0]->passwordh }}">
-                            </div>
+                           
                             <button class="btn btn-main-primary btn-block" name="sub" type="submit">Update</button>
                             </form>
                         </div>

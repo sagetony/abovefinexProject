@@ -6329,7 +6329,9 @@ button.bg-dark:focus {
 
 .p-1 {
   padding: 0.25rem !important; }
-
+  .pagination {
+    margin-top: 30px;
+}
 .pt-1,
 .py-1 {
   padding-top: 0.25rem !important; }

@@ -27,7 +27,7 @@ class support extends Controller
         $validator = Validator::make($request->all(), [
             'email'=>'required',
             'title'=>'required',
-            'message'=>'required',
+            'msg'=>'required',
             ]);
 
        if($validator->fails()){
@@ -39,7 +39,7 @@ class support extends Controller
             'ticketID' => $this->randomDigit(),
             'email' => $request->email,
             'title' => $request->title,
-            'msg' => $request->message,
+            'msg' => $request->msg,
             'status' => 'PENDING',
        ]);
 

@@ -109,7 +109,7 @@
 						<div class="card">
 							<div class="card-header pb-2 d-block d-sm-flex flex-wrap border-0">
 								<div class="mb-3">
-									<h4 class="fs-20 text-black">Investment Activity</h4>
+									<h4 class="fs-20 text-black">Withdrawal Activity</h4>
 								
 								</div>
 								

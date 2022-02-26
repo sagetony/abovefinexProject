@@ -97,14 +97,14 @@
   </div>
   <!-- TradingView Widget END -->
   <div class="text-right mb-4">
-    <a href="javascript:void(0);" class="btn btn-primary btn-rounded"> Fund Wallet</a>
-</div>
+    <a href="{{ route('fund') }}" class="btn btn-primary btn-rounded"> Fund Wallet</a>
+    </div>
                 <div class="cards-slider owl-carousel mb-4">
                     <div class="items">
                         <div class="wallet-card bg-secondary" style="background-image:url('{{asset('assetsn/images/pattern/pattern1.png')}}');">
                             <div class="head">
                                 <p class="fs-14 text-white mb-0 op6 font-w100">My Wallet</p>
-                                <span>${{ 0 + $data - $datawitw - $datadeposit }}</span>
+                                <span>${{ 0 + $data - $datawitw - $datadeposit - $datasignal - $datarobot }}</span>
                             </div>
                             <div class="wallet-footer">
                                 <img src="{{asset('assetsn/images/card-logo.png')}}" alt="">
@@ -190,12 +190,12 @@
                                                     </select>
                                         </div>
                                        
-                                        <div class="mb-3">
+                                        {{-- <div class="mb-3">
                                             <label class="col-sm-6 col-form-label">Amount</label>
 															<div class="col-sm-9">
 																<input type="text" name="amount" class="form-control" id="amount" >
 															</div>
-                                        </div>
+                                        </div> --}}
                                         <div class="text-center">
                                             <button type="submit" class=" col-sm-9 btn btn-primary btn-block">Invest Now</button>
                                         </div>

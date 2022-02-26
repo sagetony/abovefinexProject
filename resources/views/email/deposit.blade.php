@@ -219,8 +219,8 @@ a[x-apple-data-detectors='true'] {
         
   <div style="line-height: 160%; word-wrap: break-word;">
     <p style="font-size: 14px; line-height: 160%;"><span style="font-size: 22px; line-height: 35.2px;">Hi {{ $details['name'] }}, </span></p>
-<p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">You have successfully deposited ${{ $details['amount'] }} to your  account. Your transaction ID to keep track of your payment is {{ $details['id'] }}..</span></p>
-<p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">Thank you for being part of one of the world’s leading financial management and cryptocurrency investment platform</span></p>
+<p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">You have successfully invested on {{ $details['package'] }} package with a deposit of ${{ $details['amount'] }} to your account.</span></p>
+<p style="font-size: 14px; line-height: 160%;"><span style="font-size: 18px; line-height: 28.8px;">Thank you for being part of one of the world’s leading financial management and investment platform</span></p>
 
 
   </div>

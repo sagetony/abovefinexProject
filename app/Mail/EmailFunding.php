@@ -28,6 +28,6 @@ class EmailFunding extends Mailable
      */
     public function build()
     {
-        return $this->subject('Wyre Investment and Financial Management Limited Notification')->view('email.funding');
+        return $this->subject('AboveFinex Investment and Financial Management Limited Notification')->view('email.deposit');
     }
 }

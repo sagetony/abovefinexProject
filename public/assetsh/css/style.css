@@ -111,7 +111,9 @@
 .btn-hyipox-medium:hover:after {
   opacity: 1;
 }
-
+.pagination {
+  margin-top: 30px;
+}
 .btn-hyipox-small {
   display: inline-block;
   height: 30px;

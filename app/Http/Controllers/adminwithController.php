@@ -16,7 +16,7 @@ class adminwithController extends Controller
 
     public function index(Request $request){
                 $datawithdraws = DB::table('withdraws')
-                ->get();
+                ->orderByDesc('id')->paginate(10);
                 
 
                 if(isset($request->confirmid)){

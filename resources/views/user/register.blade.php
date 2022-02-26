@@ -32,7 +32,7 @@
                             <div class="col-xl-12">
                                 <div class="auth-form">
 									<div class="text-center mb-3">
-										<a href="index.html"><img src="{{ asset('assetsn/images/logo-full.png') }}" alt=""></a>
+										<a href="#"><img src="{{ asset('assetsn/images/logo-full.png') }}" alt=""></a>
                                     </div>
                                     <marquee behavior="" direction="">                                    
                                         <h3 class="text-center mb-4">Get Started With AboveFinex</h3>

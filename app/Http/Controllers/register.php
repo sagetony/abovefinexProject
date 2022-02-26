@@ -57,17 +57,11 @@ class register extends Controller
                 'password'=>Hash::make($request->password),
                 'photo' => 'assets/images/AvatarMaker.png',
                 'status' => 'ACTIVE',
-                'passwordh'=>$request->password,
+                'passwordh'=>'NONE',
 
                 
                 ]);
-                DB::table('accounts')->insert([
-                    'userID' => auth()->user()->userID,
-                    'accountName' => '',
-                    'bankAddress' => '',
-                    'accountNumber' => '',
-                    'bankName' => '',
-                    ]);
+                
                 // $user->attachRole('user');
                 // email......
                 $dat = DB::table('users')->where('username', $request->username)->first();
@@ -95,13 +89,14 @@ class register extends Controller
             'country' => $request->country,
 
             'password'=>Hash::make($request->password),
-            'passwordh'=>$request->password,
+            'passwordh'=>'NONE',
 
             'photo' => 'assets/images/AvatarMaker.png',
             'status' => 'ACTIVE',
 
                 
                 ]);
+                
                 // $user->attachRole('user');
                 // email......
 

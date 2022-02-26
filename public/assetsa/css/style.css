@@ -12,6 +12,9 @@
     background-color: transparent;
     font-weight: 500;
 }
+.pagination {
+    margin-top: 30px;
+}
 .accordion .card-header a {
     display: block;
     padding: 14px 20px;

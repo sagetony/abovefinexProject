@@ -30,11 +30,17 @@
                 <a class="side-menu__item" data-toggle="slide" href="#"><i class="side-menu__icon ti-wallet"></i><span class="side-menu__label">Payment</span><i class="angle fe fe-chevron-down"></i></a>
                 <ul class="slide-menu">
                     <li><a class="slide-item" href="{{ route('adminfunding') }}">Deposits</a></li>
+                    <li><a class="slide-item" href="{{ route('admininvest') }}">Investment</a></li>
+                    <li><a class="slide-item" href="{{ route('adminsignalbuy') }}">Signal Fund</a></li>
+                    <li><a class="slide-item" href="{{ route('adminwithdraw') }}">Robots Fund</a></li>
                     <li><a class="slide-item" href="{{ route('adminwithdraw') }}">Withdraw</a></li>
-                    <li><a class="slide-item" href="{{ route('admindeposit') }}">Add Funds</a></li>
+                    <li><a class="slide-item" href="{{ route('admindeposit') }}">Add Interest</a></li>
 
                     
                 </ul>
+            </li>
+            <li class="slide">
+                <a class="side-menu__item" href="{{ route('sms') }}"><i class="side-menu__icon ti-desktop"></i><span class="side-menu__label">Signal</span></a>
             </li>
             <li class="slide">
                 <a class="side-menu__item" href="{{ route('adminsupport') }}"><i class="side-menu__icon ti-email  menu-icons"></i><span class="side-menu__label">Support</span></a>

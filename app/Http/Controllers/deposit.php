@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
+
+use App\Mail\EmailFunding;
 use Carbon\Carbon;
 
 use App\Models\bonus;
@@ -82,8 +84,13 @@ class deposit extends Controller
                     ->where('status', 'CONFIRM')
                     ->where('type_withdraw', 'wallet')
                     ->sum('amount');
-
-        return view('user.deposit')->with('dataps', $dataps)->with('datacs', $datacs)->with('respBTC', $respBTC)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('datawiti', $datawiti)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datapas', $datapas)->with('datadepositi', $datadepositi)->with('data', $data)->with('datas', $datas)->with('datawitw', $datawitw)->with('datawitc',  $datawitc);
+            $datarobot =  DB::table('robots')
+                    ->where('userID', auth()->user()->userID)
+                    ->sum('amount');
+            $datasignal =  DB::table('signalbuys')
+                    ->where('userID', auth()->user()->userID)
+                    ->sum('amount');
+        return view('user.deposit')->with('dataps', $dataps)->with('datacs', $datacs)->with('respBTC', $respBTC)->with('datadeposit', $datadeposit)->with('datawit', $datawit)->with('datawiti', $datawiti)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datapas', $datapas)->with('datadepositi', $datadepositi)->with('data', $data)->with('datas', $datas)->with('datawitw', $datawitw)->with('datawitc',  $datawitc)->with('datarobot', $datarobot)->with('datasignal', $datasignal);
 
     }
     public function randomDigit(){
@@ -92,13 +99,29 @@ class deposit extends Controller
     }
     
     public function store(Request $request){
-        $data = DB::table('fundwallets')
+        $dataf = DB::table('fundwallets')
+        ->where('user_id', auth()->user()->userID)
+        ->sum('amount');
+        $datawitw =  DB::table('withdraws')
             ->where('user_id', auth()->user()->userID)
+            ->where('status', 'CONFIRM')
+            ->where('type_withdraw', 'wallet')
             ->sum('amount');
-        $validator = Validator::make($request->all(), [
-            'package'=>'required',
-            'amount'=>'required',
-            ]);
+        $datadeposit =  DB::table('deposits')
+            ->where('userID', auth()->user()->userID)
+            ->where('status', 'CONFIRM')
+            ->sum('amount');
+        $datasignal =  DB::table('signalbuys')
+            ->where('userID', auth()->user()->userID)
+            ->sum('amount');
+            $datarobot =  DB::table('robots')
+            ->where('userID', auth()->user()->userID)
+            ->sum('amount');
+        $data = 0 + $dataf - $datawitw - $datadeposit - $datasignal - $datarobot;
+            $validator = Validator::make($request->all(), [
+                'package'=>'required',
+                
+                ]);
 
        if($validator->fails()){
         return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
@@ -124,19 +147,425 @@ class deposit extends Controller
     //             'interestcap' => 0,
 
     //         ]);   
-    //         return back()->with('toast_success', 'Investment Successfull !!');
+    //         return back()->with('toast_success', 'Investment successful !!');
     //        }else{
     //         return back()->with('toast_error', 'Insufficient Fund, Kindly Fund Your Wallet !!!');
     //     }
         
     // } 
 
-            if($data >= $request->amount){
-                if(ModelsDeposit::where('userID', auth()->user()->userID)->doesntExist()){
+            if($data >= 200){
         
                     // return dd('hs');
             
                                 if(User::where('referral', auth()->user()->referral)->exists() && auth()->user()->referral != 'NONE'){
+                                    if($data >= 200 && $request->package == 'Regular 200'){
+                                            
+                                        ModelsDeposit::create([
+                                            'transaction_id'=> $this->randomDigit(),
+                                            'userID'=> auth()->user()->userID,
+                                            'username' =>auth()->user()->username,
+                                            'amount'=>200,
+                                            'coin'=>'Coin',
+                                            'packages' =>$request->package,
+            
+                                            'plan'=>'Plan',
+                                            'planAmount'=> 'Planamount',
+                                            'interest'=> 0,
+                                            'status'=>'CONFIRM',
+                                            'dayCounter'=> 0,
+                                            'interestcap' => 0,
+            
+                                        ]);    
+                                        transaction::create([
+                                            'transaction_id'=> $this->randomDigit(),
+                                            'userID'=> auth()->user()->userID,
+                                            'username' =>auth()->user()->username,
+                                            'amount'=>200,
+                                            'coin'=>'Coin',
+                                            'packages' =>$request->package,
+            
+                                            'plan'=>'Plan',
+                                            'planAmount'=> 'Planamount',
+                                            'interest'=> 0,
+                                            'status'=>'CONFIRM',
+                                            'dayCounter'=> 0,
+                                            'interestcap' => 0,
+            
+                                                            
+                                        ]);    
+                                                     // email....
+                                       
+                                                    $details = [
+                                                        'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                        'amount' => 200,
+                                                        'package' => $request->package,
+                                                    ]; 
+                                        
+                                                    Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                    }                                 
+       
+                            
+                                        elseif($data >= 500 && $request->package == 'Regular 500'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>500,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PlanAmount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>500,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'Planamount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 500,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                        }
+                                   
+                           
+                                        elseif($data >= 1000 && $request->package == 'Regular 1k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>1000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 1000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 1000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                        elseif($data >= 2000 && $request->package == 'Classic 2k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>2000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PlanAmount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>2000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'Planamount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 2000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                        }
+                                   
+                           
+                                        elseif($data >= 5000 && $request->package == 'Classic 5k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>5000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 5000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 5000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                
+                                   
+                           
+                                        elseif($data >= 10000 && $request->package == 'Classic 10k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>10000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 10000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 10000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                   
+                                        elseif($data >= 20000 && $request->package == 'Premium 20k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>20000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 20000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 20000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                        elseif($data >= 50000 && $request->package == 'Premium 50k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>50000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PlanAmount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>50000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'Planamount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 50000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                        }
+                                   
+                           
+                                        elseif($data >= 100000 && $request->package == 'Premium 100k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>100000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 100000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 100000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                   
+                            
+                                else{
+                                    return back()->with('toast_error', 'Insufficient Fund');
+                                }
                                     $datauser1 = User::where('userID', auth()->user()->userID)
                                     ->get()->first();
             
@@ -153,6 +582,7 @@ class deposit extends Controller
                                         'referralname'=> $referralname1,
                                         'referee' =>  $referee,
                                         'amount' => $referral1Amt,
+                                         'type'=> 'Investment',
                                     ]);
                                     if(User::where('referral', $referral1)->exists() && auth()->user()->referral != 'NONE'){
                                         $datauser2 = User::where('referral',  $referral1)
@@ -160,7 +590,7 @@ class deposit extends Controller
                                                     
                                         $referral2 = $datauser2['referral'];
                                         $referee2 = $datauser2['username'];
-                                        $referral2Amt = $request->amount *3/100;
+                                        $referral2Amt = $request->amount *2/100;
             
                                         $datareferral2 = User::where('referral',  $referral2)
                                             ->get()->first();
@@ -171,6 +601,8 @@ class deposit extends Controller
                                             'referralname'=> $referralname2,
                                             'referee' =>  $referee2,
                                             'amount' => $referral2Amt,
+                                            'type'=> 'Investment',
+
                                         ]);
             
                                         if(User::where('referral', $referral2)->exists() && auth()->user()->referral != 'NONE'){  
@@ -190,141 +622,72 @@ class deposit extends Controller
                                                 'referralname'=> $referralname,
                                                 'referee' =>  $referee3,
                                                 'amount' => $referral3Amt,
+                                                'type'=> 'Investment',
+
                                             ]);
-                                    
-            
-                                    
-                                        if($request->amount >= 100 && $request->amount < 10000 && $request->package == 'Regular'){
-                                            
-                                                ModelsDeposit::create([
-                                                    'transaction_id'=> $this->randomDigit(),
-                                                    'userID'=> auth()->user()->userID,
-                                                    'username' =>auth()->user()->username,
-                                                    'amount'=>$request->amount,
-                                                    'coin'=>'Coin',
-                                                    'packages' =>$request->package,
-                    
-                                                    'plan'=>'Plan',
-                                                    'planAmount'=> 'Planamount',
-                                                    'interest'=> 0,
-                                                    'status'=>'CONFIRM',
-                                                    'dayCounter'=> 0,
-                                                    'interestcap' => 0,
-                    
-                                                ]);    
-                                                transaction::create([
-                                                    'transaction_id'=> $this->randomDigit(),
-                                                    'userID'=> auth()->user()->userID,
-                                                    'username' =>auth()->user()->username,
-                                                    'amount'=>$request->amount,
-                                                    'coin'=>'Coin',
-                                                    'packages' =>$request->package,
-                    
-                                                    'plan'=>'Plan',
-                                                    'planAmount'=> 'Planamount',
-                                                    'interest'=> 0,
-                                                    'status'=>'CONFIRM',
-                                                    'dayCounter'=> 0,
-                                                    'interestcap' => 0,
-                    
-                                                                    
-                                                ]);    
-                                                    return back()->with('toast_success', 'Investment Successfull !!');
-            
-                                            }
+                                            if(User::where('referral', $referral3)->exists() && auth()->user()->referral != 'NONE'){  
+
+                                                $datauser4 = User::where('referral',  $referral3)
+                                                            ->get()->first();
                                                             
-               
-                                    
-                                                elseif($request->amount >= 10000 && $request->amount < 100000 && $request->package == 'Classic'){
-                                                    ModelsDeposit::create([
-                                                        'transaction_id'=> $this->randomDigit(),
-                                                        'userID'=> auth()->user()->userID,
-                                                        'username' =>auth()->user()->username,
-                                                        'amount'=>$request->amount,
-                                                        'coin'=>$request->coin,
-                                                        'packages' =>$request->package,
-                                                        'plan'=>'Plan',
-                                                        'planAmount'=> 'PlanAmount',
-                                                        'interest'=> 0,
-                                                        'status'=>'CONFIRM',
-                                                        'dayCounter'=> 0,
-                                                        'interestcap' => 0,
-                        
-                                                    ]);    
-                                                    transaction::create([
-                                                        'transaction_id'=> $this->randomDigit(),
-                                                        'userID'=> auth()->user()->userID,
-                                                        'username' =>auth()->user()->username,
-                                                        'amount'=>$request->amount,
-                                                        'coin'=>$request->coin,
-                                                        'packages' =>$request->package,
-                                        
-                                                        'plan'=>'Plan',
-                                                        'planAmount'=> 'Planamount',
-                                                        'interest'=> 0,
-                                                        'status'=>'CONFIRM',
-                                                        'dayCounter'=> 0,
-                                                        'interestcap' => 0,
-                                        
-                                                    ]);    
-                                                    return back()->with('toast_success', 'Investment Successfull !!');
+                                                $referral4 = $datauser4['referral'];
+                                                $referee4 = $datauser4['username'];
+                                                $referral4Amt = $request->amount *1/100;
+                                                $datareferral = User::where('referral',  $referral4)
+                                                ->get()->first();
+                                                $referralname = $datareferral['username'];
             
-                                                }
-                                           
-                                   
-                                                elseif($request->amount >= 100000 && $request->amount < 10000000 && $request->package == 'Premium'){
-                                                    ModelsDeposit::create([
-                                                        'transaction_id'=> $this->randomDigit(),
-                                                        'userID'=> auth()->user()->userID,
-                                                        'username' =>auth()->user()->username,
-                                                        'amount'=>$request->amount,
-                                                        'coin'=>$request->coin,
-                                                        'packages' =>$request->package,
-                                                        'plan'=>'Plan',
-                                                        'planAmount'=> 'PLANAMOUNT',
-                                                        'interest'=> 0,
-                                                        'status'=>'CONFIRM',
-                                                        'dayCounter'=> 0,
-                                                        'interestcap' => 0,
+                                                bonus::create([
+                                                    'referral_id' => $referral4,
+                                                    'referralname'=> $referralname,
+                                                    'referee' =>  $referee4,
+                                                    'amount' => $referral4Amt,
+                                                    'type'=> 'Investment',
+                                            
+                                                ]);
+                                                    
+                                                        if(User::where('referral', $referral4)->exists() && auth()->user()->referral != 'NONE'){  
+        
+                                                            $datauser5 = User::where('referral',  $referral4)
+                                                                        ->get()->first();
+                                                                        
+                                                            $referral5 = $datauser5['referral'];
+                                                            $referee5 = $datauser5['username'];
+                                                            $referral5Amt = $request->amount *1/100;
+                                                            $datareferral = User::where('referral',  $referral5)
+                                                            ->get()->first();
+                                                            $referralname = $datareferral['username'];
                         
-                                                    ]);    
-                                                    transaction::create([
-                                                        'transaction_id'=> $this->randomDigit(),
-                                                        'userID'=> auth()->user()->userID,
-                                                        'username' =>auth()->user()->username,
-                                                        'amount'=>$request->amount,
-                                                        'coin'=>$request->coin,
-                                                        'packages' =>$request->package,
-                                                        'plan'=>'Plan',
-                                                        'planAmount'=> 'PLANAMOUNT',
-                                                        'interest'=> 0,
-                                                        'status'=>'CONFIRM',
-                                                        'dayCounter'=> 0,
-                                                        'interestcap' => 0,
-                                        
-                                                    ]);    
-                                                    return back()->with('toast_success', 'Investment Successfull !!');  
-                                                }
-                                           
+                                                            bonus::create([
+                                                                'referral_id' => $referral4,
+                                                                'referralname'=> $referralname,
+                                                                'referee' =>  $referee5,
+                                                                'amount' => $referral5Amt,
+                                                                'type'=> 'Investment',
+                                                        
+                                                            ]);
+                                                                }else{
+                                                                    return back();
+                                                                    }
+                                                        }else{
+                                                            return back();
+                                                            }
                                     
-                                        else{
-                                            return back()->with('toast_error', 'Invalid Amount. Please Check The Amount And Package Again Before Investing!!');
-                                        }
                                 }else{
                                     return back();
                                 }
                             }  else{
-                                return back();
-                            }
+                                    return back();
+                                        }
                         }        else
                                 {
-                                    if($request->amount >= 100 && $request->amount < 10000 && $request->package == 'Regular'){
-                                                            
+                                    if($data >= 200 && $request->package == 'Regular 200'){
+                                            
                                         ModelsDeposit::create([
                                             'transaction_id'=> $this->randomDigit(),
                                             'userID'=> auth()->user()->userID,
                                             'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
+                                            'amount'=>200,
                                             'coin'=>'Coin',
                                             'packages' =>$request->package,
             
@@ -340,7 +703,7 @@ class deposit extends Controller
                                             'transaction_id'=> $this->randomDigit(),
                                             'userID'=> auth()->user()->userID,
                                             'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
+                                            'amount'=>200,
                                             'coin'=>'Coin',
                                             'packages' =>$request->package,
             
@@ -353,210 +716,382 @@ class deposit extends Controller
             
                                                             
                                         ]);    
-                                            return back()->with('toast_success', 'Investment Successfull !!');
-            
-                                    }
-                                                    
-            
-            
-                                    elseif($request->amount >= 10000 && $request->amount < 100000 && $request->package == 'Classic'){
-                                        ModelsDeposit::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'PlanAmount',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-            
-                                        ]);    
-                                        transaction::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
+                                                     // email....
+                                       
+                                                    $details = [
+                                                        'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                        'amount' => 200,
+                                                        'package' => $request->package,
+                                                    ]; 
+                                        
+                                                    Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                    }                                 
+       
                             
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'Planamount',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-                            
-                                        ]);    
-                                        return back()->with('toast_success', 'Investment Successfull !!');
-            
-                                    }
-            
-            
-                                    elseif($request->amount >= 100000 && $request->amount < 10000000 && $request->package == 'Premium'){
-                                        ModelsDeposit::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'PLANAMOUNT',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-            
-                                        ]);    
-                                        transaction::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'PLANAMOUNT',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-                            
-                                        ]);    
-                                        return back()->with('toast_success', 'Investment Successfull !!');  
-                                    }
-            
-            
-                                        else{
-                                            return back()->with('toast_error', 'Invalid Amount. Please Check The Amount And Package Again Before Investing!!');
+                                        elseif($data >= 500 && $request->package == 'Regular 500'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>500,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PlanAmount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>500,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'Planamount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 500,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
                                         }
+                                   
+                           
+                                        elseif($data >= 1000 && $request->package == 'Regular 1k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>1000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 1000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 1000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                        elseif($data >= 2000 && $request->package == 'Classic 2k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>2000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PlanAmount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>2000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'Planamount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 2000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                        }
+                                   
+                           
+                                        elseif($data >= 5000 && $request->package == 'Classic 5k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>5000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 5000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 5000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                
+                                   
+                           
+                                        elseif($data >= 10000 && $request->package == 'Classic 10k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>10000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 10000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 10000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                   
+                                        elseif($data >= 20000 && $request->package == 'Premium 20k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>20000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 20000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 20000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                        elseif($data >= 50000 && $request->package == 'Premium 50k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>50000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PlanAmount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>50000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'Planamount',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 50000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');
+    
+                                        }
+                                   
+                           
+                                        elseif($data >= 100000 && $request->package == 'Premium 100k'){
+                                            ModelsDeposit::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=>100000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                
+                                            ]);    
+                                            transaction::create([
+                                                'transaction_id'=> $this->randomDigit(),
+                                                'userID'=> auth()->user()->userID,
+                                                'username' =>auth()->user()->username,
+                                                'amount'=> 100000,
+                                                'coin'=>'',
+                                                'packages' =>$request->package,
+                                                'plan'=>'Plan',
+                                                'planAmount'=> 'PLANAMOUNT',
+                                                'interest'=> 0,
+                                                'status'=>'CONFIRM',
+                                                'dayCounter'=> 0,
+                                                'interestcap' => 0,
+                                
+                                            ]);    
+                                             // email....
+                                       
+                                             $details = [
+                                                'name' => auth()->user()->firstname.' '.auth()->user()->lastname,
+                                                'amount' => 100000,
+                                                'package' => $request->package,
+                                            ]; 
+                                
+                                            Mail::to(auth()->user()->email)->send(new EmailFunding($details));
+                                            return back()->with('toast_success', 'Investment successful !!');  
+                                        }
+                                   
+                            
+                                else{
+                                    return back()->with('toast_error', 'Insufficient Fund');
+                                }
                                          
                                 }
-                        } 
-                    else
-                        {
-                                    if($request->amount >= 100 && $request->amount < 10000 && $request->package == 'Regular'){
-                                                            
-                                        ModelsDeposit::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>'Coin',
-                                            'packages' =>$request->package,
-            
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'Planamount',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-            
-                                        ]);    
-                                        transaction::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>'Coin',
-                                            'packages' =>$request->package,
-            
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'Planamount',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-            
-                                                            
-                                        ]);    
-                                            return back()->with('toast_success', 'Investment Successfull !!');
-            
-                                    }
-                                                    
-            
-            
-                                    elseif($request->amount >= 10000 && $request->amount < 100000 && $request->package == 'Classic'){
-                                        ModelsDeposit::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'PlanAmount',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-            
-                                        ]);    
-                                        transaction::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                            
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'Planamount',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-                            
-                                        ]);    
-                                        return back()->with('toast_success', 'Investment Successfull !!');
-            
-                                    }
-            
-            
-                                    elseif($request->amount >= 100000 && $request->amount < 10000000 && $request->package == 'Premium'){
-                                        ModelsDeposit::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'PLANAMOUNT',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-            
-                                        ]);    
-                                        transaction::create([
-                                            'transaction_id'=> $this->randomDigit(),
-                                            'userID'=> auth()->user()->userID,
-                                            'username' =>auth()->user()->username,
-                                            'amount'=>$request->amount,
-                                            'coin'=>$request->coin,
-                                            'packages' =>$request->package,
-                                            'plan'=>'Plan',
-                                            'planAmount'=> 'PLANAMOUNT',
-                                            'interest'=> 0,
-                                            'status'=>'CONFIRM',
-                                            'dayCounter'=> 0,
-                                            'interestcap' => 0,
-                            
-                                        ]);    
-                                        return back()->with('toast_success', 'Investment Successfull !!');  
-                                    }
-            
-            
-                                        else{
-                                            return back()->with('toast_error', 'Invalid Amount. Please Check The Amount And Package Again Before Investing!!');
-                                        }
-                                    
-                        }  
+                        
+                    
             }else{
                     return back()->with('toast_error', 'Insufficient Fund, Kindly Fund Your Wallet !!!');
 
