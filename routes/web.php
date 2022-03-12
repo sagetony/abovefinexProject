@@ -38,6 +38,7 @@ use App\Http\Controllers\transferController;
 use App\Http\Controllers\walletadmincontroller;
 use App\Http\Controllers\withdraw;
 use App\Http\Controllers\withdrawhistory;
+use App\Http\Controllers\PaymentController;
 use App\Mail\emailVerify;
 use Illuminate\Support\Facades\Route;
 
@@ -193,3 +194,8 @@ Route::post('/passwordrecovery', [passwordemail::class, 'email'])->name('emailp'
 
 Route::get('/edituser', [edituser::class, 'index'])->name('edituser');
 Route::post('/edituser', [edituser::class, 'store'])->name('edituser');
+
+// Paystack Payment
+Route::post('/pay', [PaymentController::class, 'redirectToGateway'])->name('pay');
+Route::get('/payment/callback', [PaymentController::class, 'handleGatewayCallback']);
+

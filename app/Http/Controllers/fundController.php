@@ -16,6 +16,7 @@ class fundController extends Controller
         $data = DB::table('fundwallets')
             ->where('user_id', auth()->user()->userID)
             ->sum('amount');
+            $rate = DB::table('currency_rates')->first();
             $datadeposit =  DB::table('deposits')
                     ->where('userID', auth()->user()->userID)
                     ->where('status', 'CONFIRM')
@@ -53,7 +54,7 @@ class fundController extends Controller
                     ->where('type_withdraw', 'wallet')
                     ->sum('amount');
 
-        return view ('user.fund')->with('data', $data)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datawiti', $datawiti)->with('datarobot', $datarobot)->with('datasignal', $datasignal)->with('datawitw', $datawitw);
+        return view ('user.fund')->with('data', $data)->with('datawit', $datawit)->with('databonus', $databonus)->with('datainterest', $datainterest)->with('datadeposit', $datadeposit)->with('datawiti', $datawiti)->with('datarobot', $datarobot)->with('datasignal', $datasignal)->with('datawitw', $datawitw)->with("rate", $rate);
 
     }
 

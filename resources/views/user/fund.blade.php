@@ -154,14 +154,9 @@
 							</div>
                             <div class="card-body">
                                 <div class="basic-form">
-                                    <form id="makePaymentForm">
+                                    <form method="POST"  action="{{ route('pay') }}" accept-charset="UTF-8" class="form-horizontal" role="form">
                                         @csrf
-                                        <div class="mb-3">
-                                            <label class="col-sm-3 col-form-label">Full Name</label>
-															<div class="col-sm-9">
-																<input type="text" name="name" id="names" class="form-control" >
-															</div>
-                                        </div>
+                                       
                                         <div class="mb-3">
                                             <label class="col-sm-3 col-form-label">Email</label>
 															<div class="col-sm-9">
@@ -169,11 +164,22 @@
 															</div>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="col-sm-3 col-form-label">Amount</label>
+                                            <label class="col-sm-5 col-form-label">Amount (NGN)</label>
 															<div class="col-sm-9">
-																<input type="text" name="amount" class="form-control" id="amount" >
+																<input type="text" name="amount" oninput="myFunction()" class="form-control" id="amount" >
 															</div>
                                         </div>
+                                        <p id="usd" class="ml-3"></p>
+                                        
+
+                                      <script>
+                                        function myFunction() {
+                                          var x = document.getElementById("amount").value;
+                                          let b = x / {{$rate->rate}};
+                                          c = 2322.434343
+                                          document.getElementById("usd").innerHTML = "$" + b.toFixed(2);
+                                        }
+                                        </script>
                                         <div class="text-center">
                                             <button type="submit" class=" col-sm-9 btn btn-primary btn-block">Fund Wallet</button>
                                         </div>
