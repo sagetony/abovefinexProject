@@ -252,7 +252,8 @@
 						</div>
                     </div> --}}
                     
-				</div>
+                </div>
+                @if($robots != null)
                 <div class="col-xl-12">
                     <div class="card">
                         <div class="card-header pb-2 d-block d-sm-flex flex-wrap border-0">
@@ -262,6 +263,7 @@
                             </div>
                             
                         </div>
+                       
                         <div class="card-body tab-content p-0">
                             <div class="tab-pane active show fade">
                                 <div class="table-responsive">
@@ -272,7 +274,9 @@
                                             <tr>
                                                 
                                                 <td>
+                                                   
                                                     <span class="font-w600 text-black">{{ $robots->signalpurchaseID }}</span>
+                                                    
                                                 </td>
                                                 
                                                 <td>
@@ -297,8 +301,11 @@
                             </div>
                             
                         </div>
+                        
                     </div>
                 </div>
+                @endif
+
             </div>
         </div>
         <!--**********************************

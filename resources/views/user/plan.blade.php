@@ -1,284 +1,297 @@
-@include('user.headh')
-@include('user.headerh')
 
- <!-- breadcrumb begin -->
- <div class="breadcrumb-oitila">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-9 col-lg-9 col-8">
-                <div class="part-txt">
-                    <h1>investment plan</h1>
-                    <ul>
-                        <li>home</li>
-                        <li>plan</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-4 d-flex align-items-center">
-                <div class="part-img">
-                    <img src="{{ asset('assetsh/img/breadcrumb-img.png') }}" alt="image">
-                </div>
-            </div>
-        </div>
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+<meta charset="utf-8">
+<meta name="description" content="AboveFinex">
+<meta name="keywords" content="HTML,CSS,JavaScript">
+<meta name="author" content="HiBootstrap">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+<title>Our Plan || AboveFinex</title>
+<link rel="icon" href="assets/images/tab.png" type="image/png" sizes="16x16">
+
+<link rel="stylesheet" href="assets/css/bootstrap.min.css" type="text/css" media="all" />
+
+<link rel="stylesheet" href="assets/css/animate.min.css" type="text/css" media="all" />
+
+<link rel="stylesheet" href="assets/css/owl.carousel.min.css" type="text/css" media="all" />
+<link rel="stylesheet" href="assets/css/owl.theme.default.min.css" type="text/css" media="all" />
+
+<link rel="stylesheet" href="assets/css/meanmenu.min.css" type="text/css" media="all" />
+
+<link rel="stylesheet" href="assets/css/magnific-popup.min.css" type="text/css" media="all" />
+
+<link rel='stylesheet' href='assets/css/boxicons.min.css' type="text/css" media="all" />
+
+<link rel='stylesheet' href='assets/css/line-awesome.min.css' type="text/css" media="all" />
+
+<link rel='stylesheet' href='assets/css/flaticon.css' type="text/css" media="all" />
+
+<link rel="stylesheet" href="assets/css/style.css" type="text/css" media="all" />
+
+<link rel="stylesheet" href="assets/css/responsive.css" type="text/css" media="all" />
+<!--[if IE]>
+            <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+        <![endif]-->
+</head>
+<body>
+
+    <div class="preloader orange-gradient">
+    <div class="preloader-wrapper">
+    <div class="preloader-grid">
+    <div class="preloader-grid-item preloader-grid-item-1"></div>
+    <div class="preloader-grid-item preloader-grid-item-2"></div>
+    <div class="preloader-grid-item preloader-grid-item-3"></div>
+    <div class="preloader-grid-item preloader-grid-item-4"></div>
+    <div class="preloader-grid-item preloader-grid-item-5"></div>
+    <div class="preloader-grid-item preloader-grid-item-6"></div>
+    <div class="preloader-grid-item preloader-grid-item-7"></div>
+    <div class="preloader-grid-item preloader-grid-item-8"></div>
+    <div class="preloader-grid-item preloader-grid-item-9"></div>
     </div>
-</div>
-<!-- breadcrumb end -->
-
-<!-- contact begin -->
-<div class="pricing-plan" style="margin-top:-10px;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title">
-                    <span class="sub-title">
-                        Investment Package
-                    </span>
-                    <h2>
-                        Check out our Investment Plans!
-                        
-                    </h2>
-                   
-                </div>
-                
-            </div>
-        </div>
-        <h3 style="text-align: center;"> <span class="special"></span>Cryptocurrency Investment Plans</span>
-                        
-        </h3>
-        <div class="row justify-content-center justify-content-md-start">
-            
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Economy Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/bronze-medal.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $100</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$100</span>
-                        <span class="price">1.14% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>High Frequency Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy-1.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $5000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$5000</span>
-                        <span class="price">1.25% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Contract Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $50000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$50000</span>
-                        <span class="price">2% <small>daily</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Leverage Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $50000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$50000</span>
-                        <span class="price">2% <small>daily</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-        </div>
-        <h3 style="text-align: center; margin-top: 20px;"> <span class="special"></span>Gold Investment Plans</span>
-                        
-        </h3>
-        <div class="row justify-content-center justify-content-md-start mt-4">
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Gram Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/bronze-medal.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $580</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$580</span>
-                        <span class="price">1.05% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Oonze Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy-1.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $1860</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$1860</span>
-                        <span class="price">1.18% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Kilogram Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $50000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$50000</span>
-                        <span class="price">2% <small>daily</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            
-        </div>
     </div>
-
-</div>
-
-<!-- contact end -->
-<!-- testimonial begin -->
-<div class="testimonial">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title">
-                    <span class="sub-title">
-                        Our Customer Feedback
-                    </span>
-                    <h2>
-                        Clients are happily Satisfied</span>
-                    </h2>
-                </div>
-            </div>
-        </div>
     </div>
-    <div class="container">
-        <div class="all-testimonials">
-            <div class="row justify-content-center">
-                <div class="col-xl-8 col-lg-8">
-                    <div class="testi-text-slider">
-                        <div class="single-testimonial">
-                            <span class="quot-icon">
-                                <img src="{{ asset('assetsh/img/icon/quot.png') }}" alt="">
-                            </span>
-                            <p>I wish to offer my sincere thanks to Karl and his team at Wyre investment and Financial management for their ongoing expertise and helpfulness. Firstly, from a personal perspective, Karl helped source and set up an appropriate decreasing term life assurance product for me to cover my mortgage on my new home.  Karl can also, equally, assist me in providing financial advice and setting up a portfolio of investment(s)  in Crypto and Gold so that the money 'goes to work' and help ensure that i can receive a steady return on my investments and, if necessary, receive regular payments. I have found Karl and his team to be very professional, remaining both approachable and very knowledgeable, which can be a great comfort to me, in time of need.</p>
-                            <div class="part-user">
-                                <span class="user-name">Karen mason</span>
-                                <!-- <span class="user-location">London, UK</span> -->
-                            </div>
-                        </div>
-
-                        <div class="single-testimonial">
-                            <span class="quot-icon">
-                                <img src="{{ asset('assetsh/img/icon/quot.png') }}" alt="">
-                            </span>
-                            <p>I have been a client of Wyre investment and Financial management LTD for the past 14 months investing in gold. My personal financial advisor is Mr Zack. I have always found Zack to be very friendly and approachable. I find him easy to understand, as well as being knowledgeable and approachable. He has also arranged for me to get to know the more about the investment market, Overall I am very happy with the personal service I receive from Wyre. Incidentally, my portfolio and that of my family has also grown under their guidance!!</p>
-                            <div class="part-user">
-                                <span class="user-name">C Martin</span>
-                                <!-- <span class="user-location">London, UK</span> -->
-                            </div>
-                        </div>
-                        
-                        <div class="single-testimonial">
-                            <span class="quot-icon">
-                                <img src="{{ asset('assetsh/img/icon/quot.png') }}" alt="">
-                            </span>
-                            <p>I would confidently recommend Wyre investment and Financial management LTD as a professional and expert partner to anyone looking to make important decisions in the complex realm of pensions investments.</p>
-                            <div class="part-user">
-                                <span class="user-name">Ostrieko</span>
-                                <!-- <span class="user-location">London, UK</span> -->
-                            </div>
-                        </div>
-                        
-
-                    </div>
-                    <div class="testi-user-slider">
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+    
+    
+   
+    <div class="fixed-top">
+        <div class="navbar-area">
         
+        <div class="mobile-nav">
+        <a href="#" class="logo">
+        <img src="assets/images/logo.png" style="width:50%; margin-top: -10%" alt="logo">
+        </a>
+        <div class="navbar-option">
+        
+        <div class="navbar-option-item">
+        <a href="{{ route('register') }}">
+        <i class="flaticon-user"></i>
+        </a>
+        </div>
+        </div>
+        </div>
+    
+    <div class="main-nav">
+    <div class="container-fluid">
+    <nav class="navbar navbar-expand-md navbar-light">
+    <a class="navbar-brand" href="{{ route('home') }}">
+    <img src="assets/images/logo.png" style="width:60%; margin-top: -13%" alt="logo">
+    </a>
+    <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
+    <ul class="navbar-nav mx-auto">
+    <li class="nav-item">
+    <a href="{{ route('home') }}" class="nav-link active">Home</a>
+    </li>
+    <li class="nav-item">
+    <a href="{{ route('about') }}" class="nav-link">About Us</a>
+    </li>
+    <!-- <li class="nav-item">
+        <a href=" class="nav-link">Services</a>
+    </li> -->
+    {{-- <li class="nav-item">
+        <a href="{{ faq }}" class="nav-link">FAQ's</a>
+    </li> --}}
+    <!-- <li class="nav-item">
+        <a href="terms-conditions.html" class="nav-link">Terms & Conditions</a>
+    </li>
+    <li class="nav-item">
+        <a href="privacy-policy.html" class="nav-link">Privacy Policy</a>
+    </li> -->
+    <li class="nav-item">
+        <a href="{{ route('plan') }}" class="nav-link active">Plans</a>
+    </li>
+    <li class="nav-item">
+    <a href="{{ route('contact') }}" class="nav-link">Contact Us</a>
+    </li>
+    <li class="nav-item">
+        <a href="{{ route('policy') }}" class="nav-link">Privacy Policy</a>
+    </li>
+     </ul>
     </div>
-</div>
-<!-- testimonial end -->
+    
+    <div class="navbar-option">
+    <!-- <div class="navbar-option-item dropdown nav-language-option"> 
+    <button class="language-option lang-compo dropdown-toggle" type="button" id="dropdownMenuButton" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"> 
+    <img src="assets/images/uk.png" alt="flag">
+    English
+    </button>
+    <div class="dropdown-menu language-dropdown-menu" aria-labelledby="dropdownMenuButton"> 
+    <a class="dropdown-item" href="#">
+    <img src="assets/images/uk.png" alt="flag">
+    English
+    </a>
+    <a class="dropdown-item" href="#">
+    <img src="assets/images/germany.png" alt="flag">
+    Deutsch
+    </a>
+    <a class="dropdown-item" href="#">
+    <img src="assets/images/china.png" alt="flag">
+    简体中文
+    </a>
+    <a class="dropdown-item" href="#">
+    <img src="assets/images/arab.png" alt="flag">
+    العربيّة
+    </a>
+    </div>
+    </div> -->
+    <div class="navbar-option-item">
+    <a href="{{ route('register') }}" class="btn1 blue-gradient btn-with-image text-nowrap">
+    <i class="flaticon-login"></i>
+    <i class="flaticon-login"></i>
+    Sign Up / Login
+    </a>
+    </div>
+    </div>
+    </nav>
+    </div>
+    </div>
+    </div>
+    </div>
+    
+    
+
+
+    <header class="page-title page-bg" style="background-image: url(assets/images/about-page.png);">
+        <div class="container">
+        <div class="page-title-inner">
+        <div class="section-title">
+        <h1>Our Plan</h1>
+        <ul class="page-breadcrumbs">
+        <li><a href="{{ route('home') }}">Home</a></li>
+        <li>Our Plan</li>
+        </ul>
+        </div>
+        </div>
+        </div>
+        </header> 
+        <section class="pricing-section p-tb-100">
+            <div class="container">
+                <div class="section-title">
+                    <h2>Choose the investment plan that suit your goals</h2>
+                </div>
+            <div class="pricing-box-grid">
+            <div class="pricing-grid-item">
+            <div class="pricing-grid-item-inner">
+            <div class="pricing-item-header">
+            <h3><img src="assets/images/pricing-check.png" alt="icon">Regular</h3>
+            </div>
+            <div class="pricing-item-amount">
+            <h4><small>$</small>100 - 1k</h4>
+            </div>
+            <div class="pricing-item-body">
+            <ul class="pricing-item-list">
+             <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (7% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+            <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
+            <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
+            <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+            <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 200% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        
+            <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+            <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
+            </ul>
+            <a href="{{ route('register') }}">
+                <button class="btn1 orange-gradient btn-with-image">
+                    <i class="flaticon-login"></i>
+                    <i class="flaticon-login"></i>
+                    Get started
+                </button>
+            </a>
+           
+            </div>
+            </div>
+            </div>
+            <div class="pricing-grid-item">
+            <div class="pricing-grid-item-inner">
+            <div class="pricing-item-header">
+            <h3><img src="assets/images/pricing-check.png" alt="icon"> Classic</h3>
+            </div>
+            <div class="pricing-item-amount">
+                <h4><small>$</small>2k - 10k</h4>
+            </div>
+            <div class="pricing-item-body">
+                <ul class="pricing-item-list">
+                    <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (8% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 250% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
+                   </ul>
+                   <a href="{{ route('register') }}">
+                       <button class="btn1 orange-gradient btn-with-image">
+                           <i class="flaticon-login"></i>
+                           <i class="flaticon-login"></i>
+                           Get started
+                       </button>
+                   </a>
+                  
+            </div>
+            </div>
+            </div>
+            <div class="pricing-grid-item">
+            <div class="pricing-grid-item-inner">
+            <div class="pricing-item-header">
+            <h3><img src="assets/images/pricing-check.png" alt="icon"> Premium</h3>
+            </div>
+            <div class="pricing-item-amount">
+                <h4><small>$</small>20k - 100k</h4>
+            </div>
+            <div class="pricing-item-body">
+                <ul class="pricing-item-list">
+                    <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (9% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 300% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                   <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
+                   </ul>
+                   <a href="{{ route('register') }}">
+                       <button class="btn1 orange-gradient btn-with-image">
+                           <i class="flaticon-login"></i>
+                           <i class="flaticon-login"></i>
+                           Get started
+                       </button>
+                   </a>
+            </div>
+            </div>
+            </div>
+            </div>
+            </div>
+        </section>
+            
+        
+        
+        
+        <section class="home-contact-section overflow-hidden blue-gradient pt-100 pb-80">
+        <div class="home-contact-bg-circle">
+        <div class="home-contact-circle-item">
+        <img src="assets/images/lg-circle-1.png" alt="circle">
+        </div>
+        <div class="home-contact-circle-item">
+        <img src="assets/images/lg-circle-1.png" alt="circle">
+        </div>
+        </div>
+        <div class="container">
+        <div class="home-contact-inner">
+            <h2>What’s thinking? <br> don’t worry! get connected us</h2>
+            <p>We’re willingly is here to answer your question about AboveFinex</p>
+        <ul class="section-button">
+        <li>
+        <a href="{{ route('contact') }}" class="btn1 orange-gradient btn-with-image">
+        <i class="flaticon-agenda"></i>
+        <i class="flaticon-agenda"></i>
+        Contact Us
+        </a>
+        </li>
+        </ul>
+        </div>
+        </div>
+        </section>
         
 
 

@@ -85,7 +85,7 @@ class register extends Controller
             'email'=> $request->email,
             'phone'=> $request->phone,
             'refereeID'=> $this->randomDigit(),
-            'referral'=> 'NONE',
+            'referral'=> 'ADMIN',
             'country' => $request->country,
 
             'password'=>Hash::make($request->password),

@@ -1,194 +1,97 @@
-<div class="footer">
-    <div class="footer-top">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-4 col-lg-4 col-md-6 col-sm-10">
-                    <div class="about-widget">
-                        <a href="{{ asset("images/log.png") }}" class="logo">
-                            <img src="{{ asset("images/log.png") }}" alt="">
-                        </a>
-                        <p>We deliver world-class investment services, institutional asset management and financial advisory services under one distinguished banner. We operate thoughtful innovation across asset classes and global markets.</p>
-                        <!-- <div class="social-links">
-                            <ul>
-                                <li>
-                                    <a href="#0" class="single-link">
-                                        <i class="fab fa-facebook-f"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="single-link">
-                                        <i class="fab fa-twitter"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="single-link">
-                                        <i class="fab fa-instagram"></i>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a href="#0" class="single-link">
-                                        <i class="fab fa-pinterest-p"></i>
-                                    </a>
-                                </li>
-                            </ul>
-                        </div> -->
-                    </div>
-                </div>
-                <div class="col-xl-2 col-lg-2 col-md-6 col-sm-10">
-                    <div class="link-widget">
-                        <h4 class="title">
-                            Useful links
-                        </h4>
-                        <ul>
-                            <li>
-                                <a href="#0" class="single-link">
-                                    About Us
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0" class="single-link">
-                                    Investment Plan
-
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0" class="single-link">
-                                    Register
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0" class="single-link">
-                                    Login
-                                </a>
-                            </li>
-                            <!-- <li>
-                                <a href="#0" class="single-link">
-                                    Terms & Policy
-                                </a>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-2 col-md-6 col-sm-10">
-                    <div class="link-widget">
-                        <h4 class="title">
-                            Contact Info
-
-                        </h4>
-                        <ul>
-                            <li>
-                                <a href="#0" class="single-link">
-                                    Summerdale Head Dyke Lane
-                                    Pilling, Preston, Lancashire, PR3 63J, U.K
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0" class="single-link">
-                                    +447915605108 (Whatsapp)
-                                    
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#0" class="single-link">
-                                  <span></span>  support@wryeltd.com
-                                </a>
-                            </li>
-                           
-                            <!-- <li>
-                                <a href="#0" class="single-link">
-                                    Terms & Policy
-                                </a>
-                            </li> -->
-                        </ul>
-                    </div>
-                </div>
-                <div class="col-xl-3 col-lg-6 col-md-12 col-sm-10">
-                    <div class="newsletter-widget">
-                        <h4 class="title">
-                            Subscribe To Our Newsletter
-                        </h4>
-                        <form class="newsletter-form">
-                            <input type="text" placeholder="Enter Your Mail Address">
-                            <button class="def-btn def-small">
-                                Subscribe
-                            </button>
-                        </form>
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+<footer class="footer-bg">
+    <div class="container">
+    <div class="footer-upper">
+    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-4">
+    <div class="footer-content-item">
+    <div class="footer-logo">
+    <a href=""><img src="assets/images/logo-white.png" alt="logo"></a>
     </div>
-    <div class="copyright-area">
-        <div class="container">
-            <div class="row justify-content-center">
-                <div class="col-xl-8 col-lg-8">
-                    <p>Copyright © <a href="{{route('home')}}"> Wyre Investment and Financial Management Limited</a> - 2021. All Rights Reserved</p>
-                </div>
-            </div>
-        </div>
+    <div class="footer-details">
+    <p>We deliver world-class investment services, institutional asset management and financial advisory services under one distinguished banner. We operate thoughtful innovation across asset classes and global markets. </p>
     </div>
-</div>
-<!-- footer end -->
-
-</div> <!-- mobile navbar wrapper end -->
-
-<div class="d-xl-none d-lg-none d-block">
-<div class="mobile-navigation-bar">
-    <ul>
-        <li>
-            <a href="#0">
-                <img src="{{ asset('assetsh/img/svg/profile.svg') }}" alt="">
-            </a>
-        </li>
-        <li>
-            <a href="#0">
-                <img src="{{ asset('assetsh/img/svg/money-transfering.svg') }}" alt="">
-            </a>
-        </li>
-        <li>
-            <a href="#0">
-                <img src="{{ asset('assetsh/img/svg/calculator.svg') }}" alt="">
-            </a>
-        </li>
-        <li>
-            <a href="#header">
-                <img src="{{ asset('assetsh/img/svg/arrow.svg') }}" alt="">
-            </a>
-        </li>
+    </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-2">
+    <div class="footer-content-list footer-content-item">
+    <div class="footer-content-title">
+    <h3>Support</h3>
+    </div>
+    <ul class="footer-details footer-list">
+    <li><a href="#">FAQ's</a></li>
+    <li><a href="{{ route('policy') }}">Privacy Policy</a></li>
+    <li><a href="#">Terms & Conditions</a></li>
+    <li><a href="{{ route('contact') }}">Contact Us</a></li>
     </ul>
-</div>
-</div>
+    </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-2">
+    <div class="footer-content-list footer-content-item">
+    <div class="footer-content-title">
+    <h3>Company</h3>
+    </div>
+    <ul class="footer-details footer-list">
+    <li><a href="{{ route('about') }}">About Us</a></li>
+     <li><a href="{{ route('plan') }}">Our Plans</a></li>
+     <li><a href="{{ route('register') }}">Register</a></li>
+     <li><a href="{{ route('login') }}">Login</a></li>
+    </ul>
+    </div>
+    </div>
+    <div class="col-sm-6 col-md-4 col-lg-4">
+    <div class="footer-content-list footer-content-item">
+    <div class="footer-content-title">
+    <h3>Address</h3>
+    </div>
+    <ul class="footer-details footer-list">
+    <li>Address: <span>E-Business Hub Building Material Jos, Plateau, Nigeria</span></li>
+    <li>Message: <span><a href="">info@abovefinex.com</a></span></li>
+    <li>Phone: <span><a href="tel:(+234) 818 8731 239">(+234) 818 8731 239</a></span></li>
+    <li>Faq: <span>+(234) 818 8731 239</span></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="footer-lower">
+    <div class="footer-lower-item footer-copyright-text">
+    <p>Copyright ©<script>document.write(new Date().getFullYear())</script>. All Rights Reserved By <a href="" >V2Mining</a></p>
+    </div>
+    <div class="footer-lower-item footer-social-logo">
+    <ul class="footer-social-list">
+    <li class="social-btn social-btn-fb"><a href="#"><i class='bx bxl-facebook'></i></a></li>
+    <li class="social-btn social-btn-tw"><a href="#"><i class='bx bxl-twitter'></i></a></li>
+    <li class="social-btn social-btn-ins"><a href="#"><i class='bx bxl-instagram'></i></a></li>
+    <li class="social-btn social-btn-pin"><a href="#"><i class='bx bxl-pinterest-alt'></i></a></li>
+    <li class="social-btn social-btn-yt"><a href="#"><i class='bx bxl-youtube'></i></a></li>
+    </ul>
+    </div>
+    </div>
+    </div>
+</footer>
 
-<div class="d-xl-block d-lg-block d-none">
-<div class="back-to-top-btn">
-    <a href="#">
-        <img src="{{ asset('assetsh/img/svg/arrow.sv') }}g" alt="">
-    </a>
-</div>
-</div>
 
-<!-- jquery -->
-<script src="{{ asset('assetsh/js/jquery.js') }}"></script>
-<!-- popper js -->
-<script src="{{ asset('assetsh/js/popper.min.js') }}"></script>
-<!-- bootstrap -->
-<script src="{{ asset('assetsh/js/bootstrap.min.js') }}"></script>
-<!-- modal video js -->
-<script src="{{ asset('assetsh/js/jquery-modal-video.min.js') }}"></script>
-<!-- slick js -->
-<script src="{{ asset('assetsh/js/slick.min.js') }}"></script>
-<!-- toastr js -->
-<script src="{{ asset('assetsh/js/toastr.min.js') }}"></script>
-<!-- clock js -->
-<script src="{{ asset('assetsh/js/clock.min.js') }}"></script>
-<!-- investment profit calculator-->
-<script src="{{ asset('assetsh/js/investment-profit-calculator.js') }}"></script>
-<!-- main -->
-<script src="{{ asset('assetsh/js/main.js') }}"></script>
+<script data-cfasync="false" src="../../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/jquery-3.5.1.min.js"></script>
+<script src="assets/js/bootstrap.bundle.min.js"></script>
 
+<script src="assets/js/jquery.magnific-popup.min.js"></script>
+
+<script src="assets/js/owl.carousel.min.js"></script>
+
+<script src="assets/js/jquery.ajaxchimp.min.js"></script>
+
+<script src="assets/js/form-validator.min.js"></script>
+
+<script src="assets/js/contact-form-script.js"></script>
+
+<script src="assets/js/jquery.meanmenu.min.js"></script>
+
+<script src="assets/js/jquery.waypoints.js"></script>
+
+<script src="assets/js/counter-up.js"></script>
+
+<script src="assets/js/script.js"></script>
 </body>
 
-
-<!-- Mirrored from iamubaidah.com/html/oitila/live/index-3.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 17 Nov 2021 20:34:44 GMT -->
+<!-- Mirrored from templates.hibootstrap.com/AboveFinex/default/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 16 Mar 2022 11:37:43 GMT -->
 </html>

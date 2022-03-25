@@ -39,6 +39,7 @@ use App\Http\Controllers\walletadmincontroller;
 use App\Http\Controllers\withdraw;
 use App\Http\Controllers\withdrawhistory;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\robotPayment;
 use App\Mail\emailVerify;
 use Illuminate\Support\Facades\Route;
 
@@ -109,24 +110,24 @@ Route::get('/tradingactivation', [tradingactivation::class, 'index'])->name('tra
 Route::post('/tradingactivation', [tradingactivation::class, 'store'])->name('tradingactivation');
 
 
-// Route::get('/', function(){
-//         return view('user.home');
-// })->name('home');
+Route::get('/', function(){
+        return view('user.home');
+})->name('home');
 
-// Route::get('/about', function(){
-//     return view('user.about');
-// })->name('about');
-// Route::get('/plan', function(){
-//     return view('user.plan');
-// })->name('plan');
+Route::get('/about', function(){
+    return view('user.about');
+})->name('about');
+Route::get('/plan', function(){
+    return view('user.plan');
+})->name('plan');
 
-// Route::get('/contact', function(){
-//     return view('user.contact');
-// })->name('contact');
+Route::get('/contact', function(){
+    return view('user.contact');
+})->name('contact');
 
-// Route::get('/faq', function(){
-//     return view('user.faq');
-// })->name('faq');
+Route::get('/policy', function(){
+    return view('user.policy');
+})->name('policy');
  Route::get('/test', function(){
         return view('user.test');
     })->name('test');
@@ -176,7 +177,7 @@ Route::get('/admin/wallet', [walletadmincontroller::class, 'index'])->name('admi
 
 
 Route::get('/admin/withdraw', [adminwithController::class, 'index'])->name('adminwithdraw');
-
+Route::get('/admin/robot', [robotPayment::class, 'index'])->name('adminrobot');
 Route::get('/admin/interest', [addinterestController::class, 'index'])->name('addinterest');
 Route::post('/admin/interest', [addinterestController::class, 'store'])->name('addinterest');
 

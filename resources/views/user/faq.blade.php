@@ -1,91 +1,192 @@
 @include('user.headh')
 @include('user.headerh')
 
- <!-- breadcrumb begin -->
- <div class="breadcrumb-oitila">
+<section class="faq-section pt-100 pb-70">
     <div class="container">
-        <div class="row">
-            <div class="col-xl-9 col-lg-9 col-8">
-                <div class="part-txt">
-                    <h1>faq</h1>
-                    <ul>
-                        <li>home</li>
-                        <li>faq</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-4 d-flex align-items-center">
-                <div class="part-img">
-                    <img src="{{ asset('assetsh/img/breadcrumb-img.png') }}" alt="image">
-                </div>
-            </div>
-        </div>
+    <div class="section-title">
+    <h2>What Want To Know?</h2>
     </div>
-</div>
-<!-- breadcrumb end -->
-
- <!-- faq begin -->
- <div class="faq">
+    <div class="faq-section-content">
+    <div class="row align-items-center">
+    <div class="col-sm-12 col-md-12 col-lg-5 pb-30 order-2 order-lg-1">
+    <div class="faq-accordion">
+    
+    <div class="faq-accordion-item faq-accordion-item-active"> 
+    <div class="faq-accordion-header">
+     <h3 class="faq-accordion-title">How can I cancel/pause my subscription?</h3>
+    <div class="faq-accordion-header-overlay"></div>
+    </div>
+    <div class="faq-accordion-body">
+    <div class="faq-accordion-body-inner">
+    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaquis nostrud ullamco nisi ut aliquip</p>
+    </div>
+    </div>
+    </div>
+    <div class="faq-accordion-item">
+    <div class="faq-accordion-header">
+    <h3 class="faq-accordion-title">Does the price go up as my team gets larger?</h3>
+    <div class="faq-accordion-header-overlay"></div>
+    </div>
+    <div class="faq-accordion-body">
+    <div class="faq-accordion-body-inner">
+    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaquis nostrud ullamco nisi ut aliquip</p>
+    </div>
+    </div>
+    </div>
+    <div class="faq-accordion-item">
+    <div class="faq-accordion-header">
+    <h3 class="faq-accordion-title">What access do I have on a free trial?</h3>
+    <div class="faq-accordion-header-overlay"></div>
+    </div>
+    <div class="faq-accordion-body">
+    <div class="faq-accordion-body-inner">
+    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaquis nostrud ullamco nisi ut aliquip</p>
+    </div>
+    </div>
+    </div>
+    <div class="faq-accordion-item">
+    <div class="faq-accordion-header">
+    <h3 class="faq-accordion-title">What access do I have on the free plan?</h3>
+    <div class="faq-accordion-header-overlay"></div>
+    </div>
+    <div class="faq-accordion-body">
+    <div class="faq-accordion-body-inner">
+    <p class="faq-accordion-para">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniaquis nostrud ullamco nisi ut aliquip</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 offset-lg-1 pb-30 order-1 order-lg-2">
+    <div class="home-image-content">
+    <img src="assets/images/faq-img.png" alt="facility">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <section class="contact-comment-section faq-contact-section bg-off-white pt-100 pb-70">
     <div class="container">
-        <div class="row justify-content-between">
-            <div class="col-xl-3 col-lg-3 col-md-4">
-                <div class="faq-sidebar">
-                    <div class="search-widget">
-                        <form>
-                            <input type="text" placeholder="Search here">
-                            <button type="submit"><i class="fas fa-search"></i></button>
-                        </form>
-                    </div>
-                    <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                        <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">General Questions</a>
-                       
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-8 col-lg-8 col-md-8">
-                <div class="faq-content">
-                    <div class="tab-content" id="v-pills-tabContent">
-                        <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
-                            <div class="single-faq">
-                                <h4> What is the minimum percentage that an investor can earn on Wryeltd?</h4>
-                                <p>In Wryeltd Investment the minimum percentage to earn is 1.4% daily.</p>
-                            </div>
-
-                            <div class="single-faq">
-                                <h4>Can I invest using cryptocurrency?</h4>
-                                <p>Yea, in wryeltd investment we only accept funds using cryptocurrency.</p>
-                            </div>
-
-                            <div class="single-faq">
-                                <h4>What are the minimum and maximum deposit amounts?</h4>
-                                <p>Wryeltd Investment is for all, our minimum deposit is 100 dollars and we don't have maximum deposit, you can deposit as much as you want on Wryeltd.</p>
-                            </div>
-                            <div class="single-faq">
-                                <h4>How long will the money arrive in my account after the withdrawal process?</h4>
-                                <p>Your money will arrive 10-15 minutes after you initiate the withdrawal process.</p>
-                            </div>
-                            
-                            <div class="single-faq">
-                                <h4>What payment system can i use to withdraw?</h4>
-                                <p>Wryeltd encourages crytocurrencies for withdrawal. For withdrawal your wallet address will be needed.</p>
-                            </div>
-                        </div>
-
-                        <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-                           
-                            
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="home-facility-content">
+    <div class="row align-items-end">
+    <div class="col-sm-12 col-md-12 col-lg-5">
+    <div class="home-facility-image">
+    <div class="home-facility-item faq-block-image pb-30">
+    <img src="assets/images/contact-comment.png" alt="comment">
     </div>
-</div>
-<!-- faq end -->
-
-        
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-7">
+    <div class="home-facility-item pb-30">
+    <div class="blog-comment-leave-area contact-comment-leave-area">
+    <h3 class="sub-section-title">Do you have any question?</h3>
+    <div class="blog-comment-input-area mt-40">
+    <form id="contactForm">
+    <div class="row">
+    <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="form-group mb-30">
+    <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text"><i class="flaticon-user"></i></span>
+    </div>
+    <input type="text" name="name" id="name" class="form-control" required data-error="Please enter your name" placeholder="Name*" />
+    </div>
+    <div class="help-block with-errors"></div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="form-group mb-30">
+    <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text"><i class="flaticon-user"></i></span>
+    </div>
+    <input type="email" name="email" id="email" class="form-control" required data-error="Please enter your email" placeholder="Email*" />
+    </div>
+    <div class="help-block with-errors"></div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="form-group mb-30">
+    <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text"><i class="flaticon-phone-call"></i></span>
+    </div>
+    <input type="text" name="phone_number" id="phone_number" required data-error="Please enter your phone number" class="form-control" placeholder="Phone*" />
+    </div>
+    <div class="help-block with-errors"></div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-6">
+    <div class="form-group mb-30">
+    <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text"><i class="flaticon-book"></i></span>
+    </div>
+    <input type="text" name="msg_subject" id="msg_subject" class="form-control" required data-error="Please enter your subject" placeholder="Subject*" />
+    </div>
+    <div class="help-block with-errors"></div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+    <div class="form-group mb-30">
+    <div class="input-group">
+    <div class="input-group-prepend">
+    <span class="input-group-text"><i class="flaticon-email"></i></span>
+    </div>
+    <textarea name="message" class="form-control" id="message" rows="5" required data-error="Write your message" placeholder="Your Message*"></textarea>
+    </div>
+    <div class="help-block with-errors"></div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-12">
+    <button class="btn1 orange-gradient btn-with-image" type="submit">
+    <i class="flaticon-login"></i>
+    <i class="flaticon-login"></i>
+    Submit A Question
+    </button>
+    <div id="msgSubmit"></div>
+    <div class="clearfix"></div>
+    </div>
+    </div>
+    </form>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <section class="home-contact-section overflow-hidden blue-gradient pt-100 pb-80">
+    <div class="home-contact-bg-circle">
+    <div class="home-contact-circle-item">
+    <img src="assets/images/lg-circle-1.png" alt="circle">
+    </div>
+    <div class="home-contact-circle-item">
+    <img src="assets/images/lg-circle-1.png" alt="circle">
+    </div>
+    </div>
+    <div class="container">
+    <div class="home-contact-inner">
+    <h2>493 businesses! create your bank account now</h2>
+    <p>What’s next in Aila Bank? <a href="#">Learn More</a></p>
+    <ul class="section-button">
+    <li>
+    <a href="authentication.html" class="btn1 orange-gradient btn-with-image">
+    <i class="flaticon-agenda"></i>
+    <i class="flaticon-agenda"></i>
+    Create Your Account
+    </a>
+    </li>
+    </ul>
+    </div>
+    </div>
+    </section>
 
 
 

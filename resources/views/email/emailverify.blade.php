@@ -63,7 +63,7 @@
                 <tr>
                     <td align="center" valign="top" style="padding: 40px 10px 10px 10px;">
                         <a href="#" target="_blank" style="text-decoration: none;">
-							<span style="display: block; font-family: 'Poppins', sans-serif; color: #3e8ef7; font-size: 36px;" border="0"> <img src="{{ asset('images/log.png') }} " style="width: 24%"alt="img"></span>
+							<span style="display: block; font-family: 'Poppins', sans-serif; color: #3e8ef7; font-size: 36px;" border="0"> <img src="assets/images/logo.png " style="width: 24%"alt="img"></span>
                         </a>
                     </td>
                 </tr>

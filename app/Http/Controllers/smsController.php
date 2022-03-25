@@ -8,6 +8,8 @@ use Nexmo\Laravel\Facade\Nexmo;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
+use Twilio\Rest\Client;
+
 
 class smsController extends Controller
 {
@@ -26,53 +28,89 @@ class smsController extends Controller
     }
     public function sendSmsNotificaition(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
             'msg'=>'required',
             
-            
             ]);
-       if($validator->fails()){
-        return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
 
-       }
-        $datas = DB::table('signalbuys')->where('status', 'CONFIRM')->where('dayCounter','>', 0)->get();
+            if($validator->fails()){
+                return back()->with('toast_error', $validator->messages()->all()[0])->withInput();
+
+            }
+        if(request()->isMethod("post")){
+            //Twilio SMS integration
+            $to = '+2348102983659';
+            $from = getenv("TWILIO_FROM");
+            $message = 'sdsdsdk';
+            //open connection
+
+            $ch = curl_init();
+
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_USERPWD, getenv("TWILIO_SID").':'.getenv("TWILIO_TOKEN"));
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+            curl_setopt($ch, CURLOPT_URL, sprintf('https://api.twilio.com/2010-04-01/Accounts/'.getenv("TWILIO_SID").'/Messages.json', getenv("TWILIO_SID")));
+            curl_setopt($ch, CURLOPT_POST, 3);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'To='.$to.'&From='.$from.'&Body='.$message);
+
+            // execute post
+            $result = curl_exec($ch);
+            $result = json_decode($result);
+
+            // close connection
+            curl_close($ch);
+            //Sending message ends here
+            // return [$result];
+
+            return back()->with('toast_success', 'Signal Sent Successful');                                
+
+        }
+
+        $datas = DB::table('signals')->where('status', 'CONFIRM');
 
         foreach($datas as $data){
             $phone = $data->phone;
             $companyName = 'AboveFinex';
+            //Twilio SMS integration
+            $to =  $phone;
+            $from = getenv("TWILIO_FROM");
+            $message = $request->msg;
+            //open connection
 
-            Nexmo::message()->send([
-                'to' => $phone,
-                'from' => $companyName,
-                'text' => $request->msg.' '.'(APPLY PROPER RISK MANAGEMENT)',
-           ]);
+            $ch = curl_init();
+
+            //set the url, number of POST vars, POST data
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            curl_setopt($ch, CURLOPT_USERPWD, getenv("TWILIO_SID").':'.getenv("TWILIO_TOKEN"));
+            curl_setopt($ch, CURLOPT_HTTPAUTH, CURLAUTH_ANY);
+            curl_setopt($ch, CURLOPT_URL, sprintf('https://api.twilio.com/2010-04-01/Accounts/'.getenv("TWILIO_SID").'/Messages.json', getenv("TWILIO_SID")));
+            curl_setopt($ch, CURLOPT_POST, 3);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, 'To='.$to.'&From='.$from.'&Body='.$message);
+
+            // execute post
+            $result = curl_exec($ch);
+            $result = json_decode($result);
+
+            // close connection
+            curl_close($ch);
     
                 
         }
- 
-        // Email
         signal::create([
-            'signalID' => $this->randomDigit(),
-            'Message' => $request->msg,
-            'T2' => '',
-            'SL' => '',
-            'entry'=> '',
-            'currencypairs'=> '',
-            'order' => '',
-            'status' => 'CONFIRM',
-        ]);
+                'signalID' => $this->randomDigit(),
+                'Message' => $request->msg,
+                'T2' => '',
+                'SL' => '',
+                'entry'=> '',
+                'currencypairs'=> '',
+                'order' => '',
+                'status' => 'CONFIRM',
+            ]);
+ 
+      
         return back()->with('toast_success', 'Signal Sent Successful');                                
-
-  
-        // $basic  = new \Nexmo\Client\Credentials\Basic('Nexmo key', 'Nexmo secret');
-        // $client = new \Nexmo\Client($basic);
- 
-        // $message = $client->message()->send([
-        //     'to' => '9197171****',
-        //     'from' => 'John Doe',
-        //     'text' => 'A simple hello message sent from Vonage SMS API'
-        // ]);
- 
-        // dd('SMS message has been delivered.');
+    
     }
 }

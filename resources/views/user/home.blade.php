@@ -1,838 +1,438 @@
 @include('user.headh')
 @include('user.headerh')
-<!-- banner begin -->
-<div class="banner banner-style-2">
+
+
+<section class="feature-section p-tb-100 overflow-x-hidden">
     <div class="container">
-        <div class="row justify-content-xl-between justify-content-lg-between justify-content-md-center justify-content-sm-center">
-            <div class="col-xl-7 col-lg-7 col-sm-10 col-md-9 d-xl-flex d-lg-flex d-block align-items-center d-banner-tamim">
-                <div class="banner-content mb-4">
-                    <h4>Want to Invest Money?</h4>
-                    <h1> Build A Sustainable Investment Portfolio With Wyre Investment and Financial Management Limited</h1>
-                    <p>We Already Completed Our 8+ Years in Online Investment Business<br/> With Trust and Excellent Reputation.</p>
-                    <a href="{{ route('login') }}" class="btn-hyipox">Start Investing Now</a>
-                </div>
-                <!-- <div class="banner-statics">
-                    <div class="single-statics">
-                        <div class="part-icon">
-                            <img src="assets/img/svg/start.svg" alt="">
-                        </div>
-                        <div class="part-text">
-                            <span class="text">Starting Date</span>
-                            <span class="number">Jan 01, 2020</span>
-                        </div>
-                    </div>
-                    <div class="single-statics">
-                        <div class="part-icon">
-                            <img src="assets/img/svg/user.svg" alt="">
-                        </div>
-                        <div class="part-text">
-                            <span class="text">Online Users</span>
-                            <span class="number">50257.001+</span>
-                        </div>
-                    </div>
-                </div> -->
-            </div>
-            <div class="col-xl-4 col-lg-5 col-sm-10 col-md-8 monitor-for-480">
-                <div class="profit-calculator">
-                    <div class="calc-header">
-                        <h3 class="title">Calculate Your Profit</h3>
-                    </div>
-                    <div class="calc-body">
-                        <div class="part-plan">
-                            <h4 class="title">
-                                Choose Investment Plan
-                            </h4>
-                            <div class="dropdown show">
-                                <a class="dropdown-toggle displayed-selected-plan" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    1.14% daily
-                                </a>
-                                <div class="dropdown-menu plan-select-list" aria-labelledby="dropdownMenuLink">
-                                    
-                                    <a class="dropdown-item single-select-plan selected-plan active" href="#" data-max-amount="5000" data-min-amount="100" data-package-no="1" data-parcentage="1.14" data-days="90">1.14% daily</a>
-                                    <a class="dropdown-item single-select-plan selected-plan active" href="#" data-max-amount="1860" data-min-amount="580" data-package-no="1" data-parcentage="1.05" data-days="90">1.05% daily</a>
-                                    <a class="dropdown-item single-select-plan selected-plan active" href="#" data-max-amount="50000" data-min-amount="1860" data-package-no="1" data-parcentage="1.18" data-days="90">1.18% daily</a>
-                                    <a class="dropdown-item single-select-plan" href="#" data-package-no="2" data-max-amount="50000" data-min-amount="5000" data-parcentage="1.25" data-days="90">1.25% daily</a>
-                                    <a class="dropdown-item single-select-plan" href="#" data-package-no="3" data-max-amount="5000000" data-min-amount="50000" data-parcentage="2" data-days="90">2% daily</a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="part-amount">
-                            <h4 class="title">
-                                Enter Amount
-                            </h4>
-                            <form>
-                                <span class="currency-symbol" id="basic-addon1">$</span>
-                                <input type="text" class="inputted-amount" value="10">
-                                
-                                    <button class="dropdown-toggle displayed-selected-currency" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        USD
-                                    </button>
-                                    <div class="dropdown-menu currency-select-list" aria-labelledby="dropdownMenuButton">
-                                        <a class="dropdown-item single-currency-select selected-currency active" href="#" data-currency="usd">USD</a>
-                                       
-                                    </div> 
-                                    <h4 class="title mt-4">
-                                        Period Of Investment
-                                    </h4>
-                                    <span class="currency-symbol" id="basic-addon1">$</span>
-
-                                    <input type="text" class="inputted-amount" id="day" value="90" style="padding: 10px;">
-
-                            </form>
-                        </div>
-                        <div class="d-inline-block cursor-not-allowed">
-                            <button class="calculate-all">Calculate</button>
-                        </div>
-                        <i class="fas fa-check"></i>
-                    </div>
-                    <div class="part-result">
-                        <ul>
-                            <li>
-                                <div class="icon">
-                                    <img src="{{ asset('assetsh/img/svg/business-and-finance.svg') }}" alt="">
-                                </div>
-                                <div class="text">
-                                    <span class="title">Total<br/> Percent</span>
-                                    <span class="number js_totalPercentage">250.00%</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon">
-                                    <img src="{{ asset('assetsh/img/svg/profit.svg') }}" alt="">
-                                </div>
-                                <div class="text">
-                                    <span class="title">Daily<br/> Profits</span>
-                                <span class="number js_dailyProfit">$0.05</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon">
-                                    <img src="{{ asset('assetsh/img/svg/profits.svg') }}" alt="">
-                                </div>
-                                <div class="text">
-                                    <span class="title">Net<br/> Profit</span>
-                                <span class="number js_netProfit">$25.00</span>
-                                </div>
-                            </li>
-                            <li>
-                                <div class="icon">
-                                    <img src="{{ asset('assetsh/img/svg/return-on-investment.svg') }}" alt="">
-                                </div>
-                                <div class="text">
-                                    <span class="title">Total<br/> Return</span>
-                                    <span class="number js_totalReturn">$35.00</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="section-title">
+    <h2>Our valuable features</h2>
     </div>
-</div>
-<!-- banner end -->
-
-<!-- about begin -->
-<div class="about">
-    <div class="container">
-        <div class="how-to-works">
-            <div class="row justify-content-center justify-content-sm-center justify-content-md-start">
-                <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6">
-                    <div class="single-system">
-                        <div class="part-icon">
-                            <img src="{{ asset('assetsh/img/svg/add-user.svg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h4 class="title">Register Account</h4>
-                            <p>Register for an account. It's totally easy and free</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6">
-                    <div class="single-system">
-                        <div class="part-icon">
-                            <img src="{{ asset('assetsh/img/svg/coin.svg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h4 class="title">Invest Money</h4>
-                            <p>Choose your investment plan and make first deposit</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6">
-                    <div class="single-system">
-                        
-                        <div class="part-icon">
-                            <img src="{{ asset('assetsh/img/svg/money-bag.svg') }}" alt="">
-                        </div>
-                        <div class="part-text">
-                            <h4 class="title">Get Withdraw</h4>
-                            <p>Request for the withdrawal and receive a payment</p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    
+    <div class="home-feature">
+    <div class="home-feature-carousel owl-carousel owl-theme">
+    <div class="item">
+    <div class="feature-carousel-content">
+    <div class="feature-carousel-thumb status-blue">
+    <img src="assets/images/file.png" alt="feature">
     </div>
-      <!-- prcing plan begin -->
-<div class="pricing-plan" style="margin-top:-90px;">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title">
-                    <span class="sub-title">
-                        Investment Package
-                    </span>
-                    <h2>
-                        Check out our Investment Plans!</span>
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center justify-content-md-start">
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Economy Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/bronze-medal.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $100</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$100</span>
-                        <span class="price">1.14% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>High Frequency Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy-1.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $5,000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$5,000</span>
-                        <span class="price">1.25% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Contract Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $50,000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$50,000</span>
-                        <span class="price">2% <small>daily</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Leverage Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $50,000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$50,000</span>
-                        <span class="price">2% <small>daily</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center justify-content-md-start mt-4">
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Gram Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/bronze-medal.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $580</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$580</span>
-                        <span class="price">1.05% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Oonze Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy-1.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $1,860</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$1,860</span>
-                        <span class="price">1.18% <small>daily rate</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6 prc-col">
-                <div class="single-plan">
-                    <h3>Kilogram Plan</h3>
-                    <div class="plan-icon">
-                        <img src="{{ asset('assetsh/img/icon/trophy.png') }}" alt="">
-                    </div>
-                    <div class="feature-list">
-                        <ul>
-                            <li><i class="fas fa-check"></i> Minimum Deposit $50,000</li>
-                            <li><i class="fas fa-check"></i> 30% Traders commission</li>
-                            <li><i class="fas fa-check"></i> 45% capital insurance</li>
-                            <li><i class="fas fa-check"></i> Dedicated Portfolio Manager</li>
-                            <li><i class="fas fa-check"></i> 24/7 Online Support</li>
-                        </ul>
-                    </div>
-                    <div class="price-info">
-                        <span class="parcent">$50,000</span>
-                        <span class="price">2% <small>daily</small></span>
-                    </div>
-                    <a href="{{ route('login') }}" class="btn-hyipox-medium price-button">Invest now</a>
-                </div>
-            </div>
-            
-        </div>
+    <div class="feature-carousel-details">
+    <h3>Profitable Investment</h3>
+    <p>Our company guarantee the safety of your investment. We secure your capital.</p>
     </div>
-
-</div>
-<!-- prcing plan end -->
-    <div class="container">
-        <div class="row justify-content-xl-between justify-content-lg-between justify-content-md-between justify-content-sm-center">
-            <div class="col-xl-6 col-lg-6 col-sm-10">
-                <div class="part-text">
-                    <h2>The right place</span> for you to invest money</h2>
-                    <p>Wyre Investment and Financial Management Limited is a general financial institution specialized in various aspects of finance management and investment.</p>
-                    <br>
-                        <p>
-                            We are registered on the 27 November 2012, the company has ever since evolved into a leading power house in the financial management industry, adding various aspects of wealth creation and management to its ever-growing portfolio.
-                        </p>
-                        <br>
-                        
-                        
-                        <p>
-                            
-                        We offer services in financial advisory and management, investment banking, fund escrow services, stock broking, trading shares, forex and most recently cryptocurrencies.
-                        </p>
-                        <br>
-                        
-                        <p>We are well groomed to meet your ever-expanding financial needs and are never afraid to evolve and adapt to our fast-paced digital world.</p>
-                    <ul>
-                        <li><i class="fas fa-check"></i> Wyre Investment and Financial Management Limited is a registered company, 08309647 is our business number. </li>
-                        <li><i class="fas fa-check"></i> Wyre Investment and Financial Management Limited offers different packages for investment in cryptocurrencies and gold</li>
-                        
-                    </ul>
-                
-                    <a href="{{ route('login') }}" class="btn-hyipox-2">Invest now</a>
-                </div>
-            </div>
-            <div class="col-xl-5 col-lg-6 col-sm-10 col-md-12">
-                <div class="part-feature">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-sm-12 col-md-6">
-                            <div class="single-feature">
-                                <div class="feature-icon">
-                                    <img src="{{ asset('assetsh/img/svg/solar-energy.svg') }}" alt="">
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Cryptocurrency Trading
-                                    </h3>
-                                    <p>Wyre Investment and Financial Management Limited offers sensational investment packages for cryptocurrency trading. </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-sm-12 col-md-6">
-                            <div class="single-feature">
-                                <div class="feature-icon">
-                                    <img src="{{ asset('assetsh/img/svg/diploma.svg') }}" alt="">
-                                </div>
-                                <div class="feature-text">
-                                    <h3>We're Certified</h3>
-                                    <p>Wyre Investment and Financial Management Limited is a registered company, 08309647 is our business number. </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-sm-12 col-md-6">
-                            <div class="single-feature">
-                                <div class="feature-icon">
-                                    <img src="{{asset('assetsh/img/svg/blockchain.svg')}}" alt="">
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Stock & Commodities Trading</h3>
-                                    <p>Stock and Commmodities trading is another offer Wyre Investment and Financial Management Limited can provide.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-sm-12 col-md-6">
-                            <div class="single-feature">
-                                <div class="feature-icon">
-                                    <img src="{{ asset('assetsh/img/svg/worldwide.svg') }}" alt="">
-                                </div>
-                                <div class="feature-text">
-                                    <h3>Gold Investment
-                                    </h3>
-                                    <p>Another service Wyre Investment and Financial Management Limited provides is our enormous gold investment which will offer robust profit.
-
-                                    </p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</div>
-<!-- about end -->
-
-<!-- statics begin -->
-<!-- <div class="statics">
-    <div class="container">
-        <div class="all-statics">
-            <div class="row no-gutters justify-content-center">
-                <div class="col-xl-4 col-lg-3 col-sm-10 col-md-4">
-                    <div class="single-statics">
-                        <div class="part-img">
-                            <img src="assets/img/svg/investor.svg" alt="investor">
-                        </div>
-                        <div class="part-text">
-                            <span class="counter">565+</span>
-                            <span class="title">total investor</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-sm-10 col-md-4">
-                    <div class="single-statics">
-                        <div class="part-img">
-                            <img src="assets/img/svg/withdraw.svg" alt="investor">
-                        </div>
-                        <div class="part-text">
-                            <span class="counter">255+</span>
-                            <span class="title">total withdraw</span>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-3 col-sm-10 col-md-4">
-                    <div class="single-statics">
-                        <div class="part-img">
-                            <img src="assets/img/svg/money-transfering.svg" alt="investor">
-                        </div>
-                        <div class="part-text">
-                            <span class="counter">265+</span>
-                            <span class="title">total transaction</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</div> -->
-<!-- statics end -->
-
-<!-- prcing plan begin -->
-
-<!-- prcing plan end -->
-
-<!-- call to action begin -->
-<div class="cta">
-    <div class="container">
-        <div class="cta-bg">
-            <div class="row justify-content-xl-between justify-content-lg-between justify-content-md-between justify-content-sm-center">
-                <div class="col-xl-7 col-lg-7 col-md-12 col-sm-10 d-xl-flex d-lg-flex d-block align-items-center">
-                    <div class="cta-text">
-                        <h2>We're Always Thinking Something Different</h2>
-                        <p>Our teams boast extensive experience in financial markets; they are constantly in search of innovative, high-performance solutions; we apply full transparency in the information we communicate to our clients and strive at all times to achieve excellence in the standard and bespoke services we provide. </p>
-                        
-                        <a href="{{ route('login') }}" class="btn-hyipox-medium cta-btn">Start Investing</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-lg-4 d-xl-flex d-lg-flex justify-content-end d-block align-items-center">
-                    <div class="part-video">
-                        <img src="{{ asset('assetsh/img/video.jpg') }}" alt="">
-                        <button data-video-id="L61p2uyiMSo" class="play-video js-video-button"><i class="fas fa-play"></i></button>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="item">
+    <div class="feature-carousel-content">
+    <div class="feature-carousel-thumb status-orange">
+    <img src="assets/images/hand.png" alt="feature">
     </div>
-</div>
-<!-- call to action end -->
-
-<!-- team begin -->
-
-<!-- team end -->
-
-<!-- transaction begin -->
-
-<!-- transaction end -->
-
-<!-- choosing reson begin -->
-<div class="choosing-reason">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title">
-                    <span class="sub-title">
-                        You couldn't think
-                    </span>
-                    <h2>
-                        why Wyre Investment and Financial Management Limited is the best
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-xl-4 col-lg-5 col-sm-10 col-md-12">
-                <div class="part-left">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-4">
-                            <div class="single-reason">
-                                <div class="icon-box">
-                                    <div class="part-icon">
-                                        <img src="{{ asset('assetsh/img/svg/withdraw.svg') }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="part-text">
-                                    <h3 class="title">Get Instant Withdrawals</h3>
-                                    <p>Get your payment instantly through requesting it! We don't take percentage</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-4">
-                            <div class="single-reason">
-                                <div class="icon-box">
-                                    <div class="part-icon">
-                                        <img src="{{ asset('assetsh/img/svg/referral.svg') }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="part-text">
-                                    <h3 class="title">Referral Bonus</h3>
-                                    <p>Promote Wyre Investment and Financial Management Limited Investment and earn 5% referral commission from each referral links</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-4">
-                            <div class="single-reason">
-                                <div class="icon-box">
-                                    <div class="part-icon">
-                                        <img src="{{asset('assetsh/img/svg/affiliate-marketing.svg')}}" alt="">
-                                    </div>
-                                </div>
-                                <div class="part-text">
-                                    <h3 class="title">Join To Affiliate Program</h3>
-                                    <p>Our affiliate program is a great way to grow your earning. It's more easy to join with us</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-2 d-xl-flex d-lg-none d-block align-items-end">
-                <div class="part-img">
-                    <div class="shadow-shape"></div>
-                    <img src="{{ asset('assetsh/img/choosing-reason.png') }}" alt="">
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-5 col-sm-10 col-md-12">
-                <div class="part-right">
-                    <div class="row">
-                        <div class="col-xl-12 col-lg-12 col-md-4">
-                            <div class="single-reason">
-                                <div class="icon-box">
-                                    <div class="part-icon">
-                                        <img src="{{asset('assetsh/img/svg/bird.svg')}}" alt="">
-                                    </div>
-                                </div>
-                                <div class="part-text">
-                                    <h3 class="title"> Profitable Investment</h3>
-                                    <p>Our company guarantee the safety of your investment. We secure your capital.</p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-4">
-                            <div class="single-reason">
-                                <div class="icon-box">
-                                    <div class="part-icon">
-                                        <img src="{{ asset('assetsh/img/svg/shield.svg') }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="part-text">
-                                    <h3 class="title">SSL Security</h3>
-                                    <p>Our system is secured and protected using DDos protection and SSL. </p>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xl-12 col-lg-12 col-md-4">
-                            <div class="single-reason">
-                                <div class="icon-box">
-                                    <div class="part-icon">
-                                        <img src="{{ asset('assetsh/img/svg/customer-service.svg') }}" alt="">
-                                    </div>
-                                </div>
-                                <div class="part-text">
-                                    <h3 class="title">24/7 Friendly Support</h3>
-                                    <p>We provide 24/7 friendly support in Wyre Investment and Financial Management Limited Investment. We're always responsible to take care</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="feature-carousel-details">
+        <h3>Join To Affiliate Program</h3>
+    <p>Our affiliate program is a great way to grow your earning. It's more easy to join with us</p>
+    
     </div>
-</div>
-<!-- choosing reson end -->
-
-<!-- testimonial begin -->
-<div class="testimonial">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title">
-                    <span class="sub-title">
-                        Our Customer Feedback
-                    </span>
-                    <h2>
-                        Clients are happily Satisfied</span>
-                    </h2>
-                </div>
-            </div>
-        </div>
     </div>
+    </div>
+    <div class="item">
+    <div class="feature-carousel-content">
+    <div class="feature-carousel-thumb status-green">
+    <img src="assets/images/megaphone.png" alt="feature">
+    </div>
+    <div class="feature-carousel-details">
+        <h3>24/7 Friendly Support</h3>
+        <p>We provide 24/7 friendly support in AboveFinex Financial Management Limited. We're always available to serve you.</p>
+    </div>
+    </div>
+    </div>
+    <div class="item">
+    <div class="feature-carousel-content">
+    <div class="feature-carousel-thumb status-orange">
+    <img src="assets/images/shield.png" alt="feature">
+    </div>
+    <div class="feature-carousel-details">
+    <h3>Safe and Secure</h3>
+    <p>Our system is secured and protected using DDos protection and SSL.</p>
+    </div>
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <section class="home-about-section bg-off-white pt-100 pb-70">
     <div class="container">
-        <div class="all-testimonials">
-            <div class="row justify-content-center">
-                <div class="col-xl-8 col-lg-8">
-                    <div class="testi-text-slider">
-                        <div class="single-testimonial">
-                            <span class="quot-icon">
-                                <img src="{{ asset('assetsh/img/icon/quot.png') }}" alt="">
-                            </span>
-                            <p>I wish to offer my sincere thanks to Karl and his team at Wyre investment and Financial management for their ongoing expertise and helpfulness. Firstly, from a personal perspective, Karl helped source and set up an appropriate decreasing term life assurance product for me to cover my mortgage on my new home.  Karl can also, equally, assist me in providing financial advice and setting up a portfolio of investment(s)  in Crypto and Gold so that the money 'goes to work' and help ensure that i can receive a steady return on my investments and, if necessary, receive regular payments. I have found Karl and his team to be very professional, remaining both approachable and very knowledgeable, which can be a great comfort to me, in time of need.</p>
-                            <div class="part-user">
-                                <span class="user-name">Karen mason</span>
-                                <!-- <span class="user-location">London, UK</span> -->
-                            </div>
-                        </div>
-
-                        <div class="single-testimonial">
-                            <span class="quot-icon">
-                                <img src="{{ asset('assetsh/img/icon/quot.png') }}" alt="">
-                            </span>
-                            <p>I have been a client of Wyre investment and Financial management LTD for the past 14 months investing in gold. My personal financial advisor is Mr Zack. I have always found Zack to be very friendly and approachable. I find him easy to understand, as well as being knowledgeable and approachable. He has also arranged for me to get to know the more about the investment market, Overall I am very happy with the personal service I receive from Wyre. Incidentally, my portfolio and that of my family has also grown under their guidance!!</p>
-                            <div class="part-user">
-                                <span class="user-name">C Martin</span>
-                                <!-- <span class="user-location">London, UK</span> -->
-                            </div>
-                        </div>
-                        
-                        <div class="single-testimonial">
-                            <span class="quot-icon">
-                                <img src="{{ asset('assetsh/img/icon/quot.png') }}" alt="">
-                            </span>
-                            <p>I would confidently recommend Wyre investment and Financial management LTD as a professional and expert partner to anyone looking to make important decisions in the complex realm of pensions investments.</p>
-                            <div class="part-user">
-                                <span class="user-name">Ostrieko</span>
-                                <!-- <span class="user-location">London, UK</span> -->
-                            </div>
-                        </div>
-                        
-
-                    </div>
-                    <div class="testi-user-slider">
-                        
-                    </div>
-                </div>
+    <div class="home-about-content">
+    
+    <div class="row align-items-center">
+    <div class="col-sm-12 col-md-12 col-lg-6 order-2 order-lg-1">
+    <div class="home-about-item desk-pad-right-10 pb-30">
+    <h3 class="home-about-title">
+    A fully integrated system for Large enterprise
+    </h3>
+    <p class="home-about-para">Above Finex is a Global Financial Exchange and Trading company that offers her clients state of the art wealth building solutions which includes Financial Training, Fund Management, E-Currency Exchange, Robotic Systems and other Trading Solutions.</p>
+    <div class="home-about-list">
+    <div class="home-about-list-item">
+    <img src="assets/images/check.png" alt="checl">
+    Responsive Support
+    </div>
+    <div class="home-about-list-item">
+    <img src="assets/images/check.png" alt="checl">
+    Experienced Analyst
+    </div>
+    <div class="home-about-list-item">
+    <img src="assets/images/check.png" alt="checl">
+    Skilled Management
+    </div>
+    <div class="home-about-list-item">
+    <img src="assets/images/check.png" alt="checl">
+    Diversified Portfolio
+    </div>
+    <div class="home-about-list-item">
+    <img src="assets/images/check.png" alt="checl">
+    Conservative Risk
+    </div>
+    <div class="home-about-list-item">
+    <img src="assets/images/check.png" alt="checl">
+    Multiple Payment Options
+    </div>
+    </div>
+    <div class="home-about-animation">
+    <div class="home-animation-item">
+    <img src="assets/images/curve-line.png" alt="animated-icon">
+    </div>
+    <div class="home-animation-item">
+    <img src="assets/images/triangle.png" alt="animated-icon">
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 order-1 order-lg-2">
+    <div class="home-about-item home-about-image pb-30 about-image-ellipsis">
+    <div class="home-image-content">
+    <img src="assets/images/enterprise.png" alt="about" class="scale-one-zero-one">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <section class="counter-section pt-100 pb-70">
+    <div class="container">
+    <div class="section-title">
+    <h2>We always try to evaluate customers Values</h2>
+    </div>
+    
+    <div class="counter-content">
+    <div class="counter-item">
+    <h3><span class="counter">1300</span><span class="counter-text-lg">+</span></h3>
+    <p>Customers</p>
+    </div>
+    <div class="counter-item">
+    <h3><span class="counter">45637</span><span class="counter-text-sm">+</span></h3>
+    <p>Guests</p>
+    <div class="counter-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+    </div>
+    <div class="counter-item">
+    <h3><span class="counter">280</span><span class="counter-text-sm">+</span></h3>
+    <p>Referral</p>
+    <div class="counter-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+    </div>
+    <div class="counter-item">
+    <h3><span class="counter">590</span><span class="counter-text-lg">+</span></h3>
+    <p>Feedbacks</p>
+    <div class="counter-loader">
+    <span></span>
+    <span></span>
+    <span></span>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <section class="home-service-section pt-100 pb-70">
+    <div class="container">
+    <div class="home-service-content">
+    <div class="row">
+    <div class="col-sm-12 col-md-12 col-lg-4">
+    <div class="home-service-item fluid-height">
+    <div class="home-service-start full-height">
+    <h2>Entirely providing best services</h2>
+    <p>We provide the most flexible and competitive services    .</p>
+    <a href="{{ route('register') }}" class="btn1 blue-gradient btn-with-image">
+    <i class="flaticon-login"></i>
+    <i class="flaticon-login"></i>
+    Get Started
+    </a>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="home-service-item fluid-height">
+    <div class="home-service-details full-height">
+    <div class="home-service-image">
+    <img src="assets/images/service1.png" alt="service">
+    </div>
+    <div class="home-service-text">
+    <h3>VIP Trading Signals
+    </h3>
+    <p>Receive quality Forex Trade alerts on your Mobile Phone. Our experts will Monitor and alert you once a Good Entry Opportunity has been Confirmed.
+    
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="home-service-item fluid-height">
+    <div class="home-service-details full-height">
+    <div class="home-service-image">
+    <img src="assets/images/service2.png" alt="service">
+    </div>
+    <div class="home-service-text">
+    <h3>Affiliate Partnership
+    </h3>
+    <p>Join the world most generous affiliate partnership network and earn Instant and Residual Income ranging from 1% to 50% per conversion.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="home-service-item fluid-height">
+    <div class="home-service-details full-height">
+    <div class="home-service-image">
+    <img src="assets/images/service3.png" alt="service">
+    </div>
+    <div class="home-service-text">
+    <h3>Hedge Fund Management
+    </h3>
+    <p>An indefinitely sustainable financial system that will help our accredited investors grow their wealth by 2X to 3X within a short period of time and with minimal capital outlay.
+    </p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-6 col-lg-4">
+    <div class="home-service-item fluid-height">
+    <div class="home-service-details full-height">
+    <div class="home-service-image">
+    <img src="assets/images/service4.png" alt="service">
+    </div>
+    <div class="home-service-text">
+    <h3>Hybrid Robotic System
+    </h3>
+    <p>Need control over your Money but do not have the Skills to Analyze Markets, Tools to Manage Risk or Time to Monitor Trades? Let our Hybrid Robotic System do all the work for you.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 offset-md-3 col-md-6 offset-lg-0 col-lg-4">
+    <div class="home-service-item fluid-height">
+    <div class="home-service-details full-height">
+    <div class="home-service-image">
+    <img src="assets/images/service5.png" alt="service">
+    </div>
+    <div class="home-service-text">
+    <h3>FX Training Academy
+    </h3>
+    <p>Learn from USA Certified Experts how to make money from the Global Financial Markets from the comfort of your home.</p>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+     
+    
+    <section class="pricing-section p-tb-100">
+        <div class="container">
+            <div class="section-title">
+                <h2>Choose the investment plan that suit your goals</h2>
             </div>
+        <div class="pricing-box-grid">
+        <div class="pricing-grid-item">
+        <div class="pricing-grid-item-inner">
+        <div class="pricing-item-header">
+        <h3><img src="assets/images/pricing-check.png" alt="icon">Regular</h3>
         </div>
+        <div class="pricing-item-amount">
+        <h4><small>$</small>100 - 1k</h4>
+        </div>
+        <div class="pricing-item-body">
+        <ul class="pricing-item-list">
+         <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (7% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 200% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+    
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
+        </ul>
+        <a href="{{ route('register') }}">
+            <button class="btn1 orange-gradient btn-with-image">
+                <i class="flaticon-login"></i>
+                <i class="flaticon-login"></i>
+                Get started
+            </button>
+        </a>
+       
+        </div>
+        </div>
+        </div>
+        <div class="pricing-grid-item">
+        <div class="pricing-grid-item-inner">
+        <div class="pricing-item-header">
+        <h3><img src="assets/images/pricing-check.png" alt="icon"> Classic</h3>
+        </div>
+        <div class="pricing-item-amount">
+            <h4><small>$</small>2k - 10k</h4>
+        </div>
+        <div class="pricing-item-body">
+            <ul class="pricing-item-list">
+                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (8% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 250% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+           
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
+               </ul>
+               <a href="{{ route('register') }}">
+                   <button class="btn1 orange-gradient btn-with-image">
+                       <i class="flaticon-login"></i>
+                       <i class="flaticon-login"></i>
+                       Get started
+                   </button>
+               </a>
+              
+        </div>
+        </div>
+        </div>
+        <div class="pricing-grid-item">
+        <div class="pricing-grid-item-inner">
+        <div class="pricing-item-header">
+        <h3><img src="assets/images/pricing-check.png" alt="icon"> Premium</h3>
+        </div>
+        <div class="pricing-item-amount">
+            <h4><small>$</small>20k - 100k</h4>
+        </div>
+        <div class="pricing-item-body">
+            <ul class="pricing-item-list">
+                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (9% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 300% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+           
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
+               </ul>
+               <a href="{{ route('register') }}">
+                   <button class="btn1 orange-gradient btn-with-image">
+                       <i class="flaticon-login"></i>
+                       <i class="flaticon-login"></i>
+                       Get started
+                   </button>
+               </a>
+        </div>
+        </div>
+        </div>
+        </div>
+        </div>
+    </section>
         
-        
+    
+    
+    <section class="home-facility-section">
+    <div class="home-facility-animation">
+    <div class="home-animation-item">
+    <img src="assets/images/curve-line.png" alt="animated-icon">
     </div>
-</div>
-<!-- testimonial end -->
-
-<!-- payment gateway begin -->
-<!-- <div class="payment-gateway">
+    <div class="home-animation-item">
+    <img src="assets/images/triangle-light.png" alt="animated-icon">
+    </div>
+    </div>
+    <div class="container-fluid p-0">
+    <div class="home-facility-content">
+    <div class="row align-items-center m-0">
+    <div class="col-sm-12 col-md-12 col-lg-6 p-0">
+    <div class="home-facility-overview desk-ml-auto pr-20 pl-20">
+    <div class="home-facility-item pb-30">
+    <div class="home-facility-details">
+    <div class="home-service-start">
+    <h2>We're Always Thinking Something Different</h2>
+    <p>Our teams boast extensive experience in financial markets; they are constantly in search of innovative, high-performance solutions.</p>
+    <p>We apply full transparency in the information we communicate to our clients and strive at all times to achieve excellence in the standard and bespoke services we provide. </p>
+    <a href="#" class="btn1 blue-gradient btn-with-image">
+    <i class="flaticon-login"></i>
+    <i class="flaticon-login"></i>
+    Get Started
+    </a>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    <div class="col-sm-12 col-md-12 col-lg-6 p-0">
+    <div class="home-facility-image desk-pad-left-20">
+    <div class="home-facility-item pb-30 img-right-res">
+    <img src="assets/images/home-facility-bg.png" alt="facility">
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </div>
+    </section>
+    
+    
+    <section class="home-contact-section overflow-hidden blue-gradient pt-100 pb-80">
+    <div class="home-contact-bg-circle">
+    <div class="home-contact-circle-item">
+    <img src="assets/images/lg-circle-1.png" alt="circle">
+    </div>
+    <div class="home-contact-circle-item">
+    <img src="assets/images/lg-circle-1.png" alt="circle">
+    </div>
+    </div>
     <div class="container">
-        <div class="row justify-content-xl-between justify-content-lg-between justify-content-md-between justify-content-sm-center">
-            <div class="col-xl-8 col-lg-8 col-sm-10 col-md-12 d-xl-flex d-lg-flex d-block align-items-center">
-                <div class="part-text">
-                    <h2>We accepted Local currency, also CryptoCurrencies</h2>
-                    <p>Quis nostrud exercitation ullamco laboris nisi utaliquip commodo consequat. Duis aute feeirure dolor voluptate velit esse cillum dolore eu fugiat nulla exercitation ullamco laboris nisi utaliquip commodo consequat. Duis aute feeirure </p>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsum nemo quasi impedit, voluptatem quae voluptas numquam unde dolor!</p>
-                </div>
-            </div>
-            <div class="col-xl-3 col-lg-3 col-sm-10 col-md-6">
-                <div class="part-crypto">
-                    <h3 class="title">for CryptoCurrency payment:</h3>
-                    <div class="part-img">
-                        <img src="assets/img/crypto-currency.png" alt="">
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center">
-            <div class="col-xl-12 col-lg-12 col-sm-10 col-md-12">
-                <div class="all-payment">
-                <h3 class="title">local payment gateway :</h3>
-                    <div class="gateway-slider">
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-1.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-2.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-4.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-3.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-5.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-1.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-3.jpg" alt="">
-                        </div>
-                        <div class="single-payment-way">
-                            <img src="assets/img/brand/brand-5.jpg" alt="">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <div class="home-contact-inner">
+        <h2>What’s thinking? <br> don’t worry! get connected us</h2>
+        <p>We’re willingly is here to answer your question about AboveFinex</p>
+    <ul class="section-button">
+    <li>
+    <a href="{{ route('contact') }}" class="btn1 orange-gradient btn-with-image">
+    <i class="flaticon-agenda"></i>
+    <i class="flaticon-agenda"></i>
+    Contact Us
+    </a>
+    </li>
+    </ul>
     </div>
-</div> -->
-<!-- payment gateway end -->
-
-<!-- blog begin -->
-<!-- <div class="blog">
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-xl-8 col-lg-8">
-                <div class="section-title">
-                    <span class="sub-title">
-                        Oitila Blogs News
-                    </span>
-                    <h2>
-                        Read Investment<span class="special"> News</span>
-                    </h2>
-                </div>
-            </div>
-        </div>
-        <div class="row justify-content-center justify-content-md-start">
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6">
-                <div class="single-blog">
-                    <div class="part-img">
-                        <img src="assets/img/blog/blog-1.jpg" alt="">
-                        <a href="#"><i class="far fa-eye"></i></a>
-                        <div class="post-date">
-                            <span class="date">26</span>
-                            <span class="month">JAn</span>
-                        </div>
-                    </div>
-                    <div class="part-text">
-                        <a href="#" class="title">When coronavirus stops your league</a>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sint esse vel atque asperiores eligendi vero blanditiis, totam eos beatae hic harum commodi quisquam debitis ipsam obcaecati deserunt nihil? Sed.</p>
-                        <a href="#" class="share-btn"><i class="fas fa-share-alt"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6">
-                <div class="single-blog">
-                    <div class="part-img">
-                        <img src="assets/img/blog/blog-2.jpg" alt="">
-                        <a href="#"><i class="far fa-eye"></i></a>
-                        <div class="post-date">
-                            <span class="date">26</span>
-                            <span class="month">JAn</span>
-                        </div>
-                    </div>
-                    <div class="part-text">
-                        <a href="#" class="title">When coronavirus stops your league</a>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sint esse vel atque asperiores eligendi vero blanditiis, totam eos beatae hic harum commodi quisquam debitis ipsam obcaecati deserunt nihil? Sed.</p>
-                        <a href="#" class="share-btn"><i class="fas fa-share-alt"></i></a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-xl-4 col-lg-4 col-sm-10 col-md-6">
-                <div class="single-blog">
-                    <div class="part-img">
-                        <img src="assets/img/blog/blog-3.jpg" alt="">
-                        <a href="#"><i class="far fa-eye"></i></a>
-                        <div class="post-date">
-                            <span class="date">26</span>
-                            <span class="month">JAn</span>
-                        </div>
-                    </div>
-                    <div class="part-text">
-                        <a href="#" class="title">When coronavirus stops your league</a>
-                        <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Nobis sint esse vel atque asperiores eligendi vero blanditiis, totam eos beatae hic harum commodi quisquam debitis ipsam obcaecati deserunt nihil? Sed.</p>
-                        <a href="#" class="share-btn"><i class="fas fa-share-alt"></i></a>
-                    </div>
-                </div>
-            </div>
-        </div>
     </div>
-</div> -->
-<!-- blog end -->
+    </section>
+    
 
 @include('user.footerh')

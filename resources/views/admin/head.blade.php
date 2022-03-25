@@ -12,10 +12,10 @@
 		<meta name="Keywords" content="cryptocurrency, dashboard, admin, crypto, ico, bootstrap admin template, admin template, bootstrap dashboard template, crypto dashboard, cryptocurrency dashboard, ico dashboard, crypto admin, dashboard cryptocurrency, cryptocurrency trading dashboard, crypto dashboard template "/>
 
 		<!-- Title -->
-        <title> Abovefinex  Admin Dashboard </title>
+        <title> Abovefinex Admin Dashboard </title>
 
 		<!-- Favicon -->
-		<link rel="icon" href=""{{ asset("images/log.png") }}" type="image/x-icon"/>
+		<link rel="icon" href="{{ asset("assetsa/images/log.png") }}" type="image/x-icon"/>
 
 		<!-- Icons css -->
 		<link href="{{ asset('assetsa/plugins/icons/icons.css') }}" rel="stylesheet">

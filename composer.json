@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.5",
         "nexmo/client": "^2.4",
         "realrashid/sweet-alert": "^4.1",
+        "twilio/sdk": "^6.35",
         "unicodeveloper/laravel-paystack": "^1.0"
     },
     "require-dev": {
