@@ -276,18 +276,15 @@
         <h3><img src="assets/images/pricing-check.png" alt="icon">Regular</h3>
         </div>
         <div class="pricing-item-amount">
-        <h4><small>$</small>100 - 1k</h4>
+        <h4><small>$</small>200 - 1k</h4>
         </div>
         <div class="pricing-item-body">
         <ul class="pricing-item-list">
-         <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (7% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
-        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
-        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+         <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quaterly Interest: (5% -15% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 150%</li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 50% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
         <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 200% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-    
-        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
         </ul>
         <a href="{{ route('register') }}">
             <button class="btn1 orange-gradient btn-with-image">
@@ -310,14 +307,12 @@
         </div>
         <div class="pricing-item-body">
             <ul class="pricing-item-list">
-                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (8% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quarterly Interest: (10% - 20% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+              
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 200%</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 50% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 250% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
            
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
                </ul>
                <a href="{{ route('register') }}">
                    <button class="btn1 orange-gradient btn-with-image">
@@ -340,14 +335,11 @@
         </div>
         <div class="pricing-item-body">
             <ul class="pricing-item-list">
-                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Monthly Interest: (9% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Duration: 30 Months</li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 160%</li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 40% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quarterly Interest: (15% - 25% Max) <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Interest Capping: 250%</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Principal Refund: 50% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Maximum Return: 300% <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-           
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Quick Responses <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
-               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">24/7 Live Chat</li>
                </ul>
                <a href="{{ route('register') }}">
                    <button class="btn1 orange-gradient btn-with-image">
@@ -407,6 +399,25 @@
     </div>
     </section>
     
+    <div class="counter-middle-section about-logo-section mt-2 mb-2">
+        <div class="container">
+        <div class="about-logo-content">
+        <div class="home-logo-item">
+        <a href="https://www.binance.com/"><img src="assets/images/binance.png" alt="logo"></a>
+        </div>
+        <div class="home-logo-item">
+        <a href="www.infinoxsocial.com"><img src="assets/images/infinox.png" alt="logo"></a>
+        </div>
+        <div class="home-logo-item">
+        <a href="#"><img src="assets/images/skillnet.png" alt="logo"></a>
+        </div>
+        <div class="home-logo-item">
+        <a href="https://deriv.com/"><img src="assets/images/deriv.png" alt="logo"></a>
+        </div>
+        </div>
+        </div>
+        </div> 
+            
     
     <section class="home-contact-section overflow-hidden blue-gradient pt-100 pb-80">
     <div class="home-contact-bg-circle">

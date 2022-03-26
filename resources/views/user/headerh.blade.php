@@ -129,7 +129,7 @@
     </a>
     </li>
     <li>
-    <a class="btn1 btn-with-image video-modal" href="http://www.youtube.com/watch?v=aJJoV0xSDqA">
+    <a class="btn1 btn-with-image video-modal" href="https://www.youtube.com/watch?v=_h1XmNejD-s">
     <i class="flaticon-play-button-1"></i>
     <i class="flaticon-play-button-1"></i>
     Intro video

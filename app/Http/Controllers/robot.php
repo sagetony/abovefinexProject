@@ -146,9 +146,10 @@ class robot extends Controller
                 $datauser1 = User::where('userID', auth()->user()->userID)
                     ->get()->first();
 
+
                 $referral1 = $datauser1['referral'];
                 $referee = $datauser1['username'];
-                $referral1Amt = $amount * 10 / 100;
+                $referral1Amt = $amount * 20 / 100;
 
                 $datareferral1 = User::where('refereeID',  $referral1)
                     ->get()->first();
@@ -161,16 +162,8 @@ class robot extends Controller
                     'amount' => $referral1Amt,
                     'type' => 'Robot',
                 ]);
-                $adminAmt = $amount * 90 / 100;
 
 
-                bonus::create([
-                    'referralID' => 'ADMIN',
-                    'referralname' => 'ADMIN',
-                    'referee' =>  $referee,
-                    'amount' => $adminAmt,
-                    'type' => 'Robot',
-                ]);
                 $datarefs = User::where('refereeID', $referral1)->get()->first();
 
                 if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
@@ -179,7 +172,7 @@ class robot extends Controller
                     $referral2 = $datauser2['referral'];
 
                     $referee2 = $datauser2['username'];
-                    $referral2Amt = $amount * 5 / 100;
+                    $referral2Amt = $amount * 10 / 100;
 
                     $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
@@ -193,6 +186,7 @@ class robot extends Controller
                         'type' => 'Robot',
                     ]);
 
+
                     $datarefs2 = User::where('refereeID', $referral2)->get()->first();
 
                     if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
@@ -203,7 +197,7 @@ class robot extends Controller
 
                         $referral3 = $datauser3['referral'];
                         $referee3 = $datauser3['username'];
-                        $referral3Amt = $amount * 5 / 100;
+                        $referral3Amt = $amount * 10 / 100;
                         $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
                         $referralname = $datareferral['username'];
@@ -225,7 +219,7 @@ class robot extends Controller
 
                             $referral4 = $datauser4['referral'];
                             $referee4 = $datauser4['username'];
-                            $referral4Amt = $amount * 2 / 100;
+                            $referral4Amt = $amount * 5 / 100;
                             $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
@@ -242,35 +236,112 @@ class robot extends Controller
 
                             if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
 
-                                $datauser5 = User::where('referral',  $referral4)
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
                                 $referral5 = $datauser5['referral'];
                                 $referee5 = $datauser5['username'];
-                                $referral5Amt = $amount * 2 / 100;
-                                $datareferral = User::where('referral',  $referral5)
+                                $referral5Amt = $amount * 5 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
                                     'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee5,
+                                    'referee' =>  $referee,
                                     'amount' => $referral5Amt,
                                     'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
+
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $amount * 50 / 100;
+
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Robot',
+                                ]);
+
+
+
                                 return back()->with('toast_success', 'You Have Activated Your Robot Offer!! Kindly Check Your Mail To Connect Your Trading Account!!');
                             } else {
+                                $datauser5 = User::where('referral',  $referral4)
+                                    ->get()->first();
+
+                                $referral5 = $datauser3['referral'];
+                                $referee5 = $datauser3['username'];
+                                $referral5Amt = $amount * 55 / 100;
+
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
+                                ]);
+
                                 return back()->with('toast_success', 'You Have Activated Your Robot Offer!! Kindly Check Your Mail To Connect Your Trading Account!!');
                             }
                         } else {
+                            $datauser4 = User::where('referral',  $referral3)
+                                ->get()->first();
+
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $amount * 60 / 100;
+
+
+
+                            bonus::create([
+                                'referralID' => 'ADMIN',
+                                'referralname' => 'ADMIN',
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
+                                'type' => 'Robot',
+                            ]);
                             return back()->with('toast_success', 'You Have Activated Your Robot Offer!! Kindly Check Your Mail To Connect Your Trading Account!!');
                         }
                     } else {
+                        $datauser3 = User::where('referral',  $referral2)
+                            ->get()->first();
+
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $amount * 70 / 100;
+
+
+
+                        bonus::create([
+                            'referralID' => 'ADMIN',
+                            'referralname' => 'ADMIN',
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
+                            'type' => 'Robot',
+                        ]);
                         return back()->with('toast_success', 'You Have Activated Your Robot Offer!! Kindly Check Your Mail To Connect Your Trading Account!!');
                     }
                 } else {
+                    $datauser2 = User::where('referral',  $referral1)
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $amount * 80 / 100;
+
+                    bonus::create([
+                        'referralID' => 'ADMIN',
+                        'referralname' => 'ADMIN',
+                        'referee' =>  $referee2,
+                        'amount' => $referral2Amt,
+                        'type' => 'Robot',
+                    ]);
                     return back()->with('toast_success', 'You Have Activated Your Robot Offer!! Kindly Check Your Mail To Connect Your Trading Account!!');
                 }
             } else {
@@ -292,15 +363,15 @@ class robot extends Controller
                 $datauser1 = User::where('userID', auth()->user()->userID)
                     ->get()->first();
 
+                $referral1 = $datauser1['referral'];
                 $referee = $datauser1['username'];
+                $referral1Amt = $amount * 100 / 100;
 
-
-                $adminAmt = $amount * 100 / 100;
                 bonus::create([
                     'referralID' => 'ADMIN',
                     'referralname' => 'ADMIN',
                     'referee' =>  $referee,
-                    'amount' => $adminAmt,
+                    'amount' => $referral1Amt,
                     'type' => 'Robot',
                 ]);
                 // email....
@@ -344,7 +415,8 @@ class robot extends Controller
             ->sum('amount');
 
         $data = 0 + $dataf - $datawitw - $datadeposit - $datasignal - $datarobot;
-        $amount = 50;
+        $amount  = 200;
+        $amount50 = 50;
         $validator = Validator::make($request->all(), [
             // 'Robotplan'=>'required',
             // 'amount'=>'required',
@@ -439,138 +511,205 @@ class robot extends Controller
                         ]);
 
                         $datauser1 = User::where('userID', auth()->user()->userID)
+                        ->get()->first();
+    
+    
+                    $referral1 = $datauser1['referral'];
+                    $referee = $datauser1['username'];
+                    $referral1Amt = $amount50 * 20 / 100;
+    
+                    $datareferral1 = User::where('refereeID',  $referral1)
+                        ->get()->first();
+                    $referralname1 = $datareferral1['username'];
+    
+                    bonus::create([
+                        'referralID' => $referral1,
+                        'referralname' => $referralname1,
+                        'referee' =>  $referee,
+                        'amount' => $referral1Amt,
+                        'type' => 'Robot',
+                    ]);
+    
+    
+                    $datarefs = User::where('refereeID', $referral1)->get()->first();
+
+                    if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                        $datauser2 = User::where('referral',  $datarefs['referral'])
                             ->get()->first();
-
-                        $referral1 = $datauser1['referral'];
-                        $referee = $datauser1['username'];
-                        $referral1Amt = $amount * 10 / 100;
-
-                        $datareferral1 = User::where('refereeID',  $referral1)
+                        $referral2 = $datauser2['referral'];
+    
+                        $referee2 = $datauser2['username'];
+                        $referral2Amt = $amount50 * 10 / 100;
+    
+                        $datareferral2 = User::where('refereeID',  $referral2)
                             ->get()->first();
-                        $referralname1 = $datareferral1['username'];
-
+    
+                        $referralname2 = $datareferral2['username'];
                         bonus::create([
-                            'referralID' => $referral1,
-                            'referralname' => $referralname1,
+                            'referralID' => $referral2,
+                            'referralname' => $referralname2,
                             'referee' =>  $referee,
-                            'amount' => $referral1Amt,
+                            'amount' => $referral2Amt,
                             'type' => 'Robot',
                         ]);
-
-
-                        $adminAmt = $amount * 90 / 100;
-
-
-                        bonus::create([
-                            'referralID' => 'ADMIN',
-                            'referralname' => 'ADMIN',
-                            'referee' =>  $referee,
-                            'amount' => $adminAmt,
-                            'type' => 'Robot',
-                        ]);
-
-
-                        $datarefs = User::where('refereeID', $referral1)->get()->first();
-
-                        if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
-                            $datauser2 = User::where('referral',  $datarefs['referral'])
+    
+    
+                        $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+    
+                        if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+    
+    
+                            $datauser3 = User::where('referral',  $datarefs2['referral'])
                                 ->get()->first();
-                            $referral2 = $datauser2['referral'];
-
-                            $referee2 = $datauser2['username'];
-                            $referral2Amt = $amount * 5 / 100;
-
-                            $datareferral2 = User::where('refereeID',  $referral2)
+    
+                            $referral3 = $datauser3['referral'];
+                            $referee3 = $datauser3['username'];
+                            $referral3Amt = $amount50 * 10 / 100;
+                            $datareferral = User::where('refereeID',  $referral3)
                                 ->get()->first();
-
-                            $referralname2 = $datareferral2['username'];
+                            $referralname = $datareferral['username'];
+    
                             bonus::create([
-                                'referralID' => $referral2,
-                                'referralname' => $referralname2,
+                                'referralID' => $referral3,
+                                'referralname' => $referralname,
                                 'referee' =>  $referee,
-                                'amount' => $referral2Amt,
+                                'amount' => $referral3Amt,
                                 'type' => 'Robot',
+    
                             ]);
-
-
-                            $datarefs2 = User::where('refereeID', $referral2)->get()->first();
-
-                            if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
-
-
-                                $datauser3 = User::where('referral',  $datarefs2['referral'])
+                            $dataref3 = User::where('refereeID', $referral3)->get()->first();
+    
+                            if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
+    
+                                $datauser4 = User::where('referral',   $dataref3['referral'])
                                     ->get()->first();
-
-                                $referral3 = $datauser3['referral'];
-                                $referee3 = $datauser3['username'];
-                                $referral3Amt = $amount * 5 / 100;
-                                $datareferral = User::where('refereeID',  $referral3)
+    
+                                $referral4 = $datauser4['referral'];
+                                $referee4 = $datauser4['username'];
+                                $referral4Amt = $amount50 * 5 / 100;
+                                $datareferral = User::where('refereeID', $referral4)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
-
+    
                                 bonus::create([
-                                    'referralID' => $referral3,
+                                    'referralID' => $referral4,
                                     'referralname' => $referralname,
                                     'referee' =>  $referee,
-                                    'amount' => $referral3Amt,
+                                    'amount' => $referral4Amt,
                                     'type' => 'Robot',
-
+    
                                 ]);
-                                $dataref3 = User::where('refereeID', $referral3)->get()->first();
-
-                                if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
-
-                                    $datauser4 = User::where('referral',   $dataref3['referral'])
+                                $dataref4 = User::where('refereeID', $referral4)->get()->first();
+    
+                                if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+    
+                                    $datauser5 = User::where('referral',  $dataref4['referral'])
                                         ->get()->first();
-
-                                    $referral4 = $datauser4['referral'];
-                                    $referee4 = $datauser4['username'];
-                                    $referral4Amt = $amount * 2 / 100;
-                                    $datareferral = User::where('refereeID', $referral4)
+    
+                                    $referral5 = $datauser5['referral'];
+                                    $referee5 = $datauser5['username'];
+                                    $referral5Amt = $amount50 * 5 / 100;
+                                    $datareferral = User::where('refereeID',  $referral5)
                                         ->get()->first();
                                     $referralname = $datareferral['username'];
-
+    
                                     bonus::create([
-                                        'referralID' => $referral4,
+                                        'referralID' => $referral5,
                                         'referralname' => $referralname,
                                         'referee' =>  $referee,
-                                        'amount' => $referral4Amt,
+                                        'amount' => $referral5Amt,
                                         'type' => 'Robot',
-
+    
                                     ]);
-                                    $dataref4 = User::where('refereeID', $referral4)->get()->first();
-
-                                    if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
-
-                                        $datauser5 = User::where('referral',  $referral4)
-                                            ->get()->first();
-
-                                        $referral5 = $datauser5['referral'];
-                                        $referee5 = $datauser5['username'];
-                                        $referral5Amt = $amount * 2 / 100;
-                                        $datareferral = User::where('referral',  $referral5)
-                                            ->get()->first();
-                                        $referralname = $datareferral['username'];
-
-                                        bonus::create([
-                                            'referralID' => $referral5,
-                                            'referralname' => $referralname,
-                                            'referee' =>  $referee5,
-                                            'amount' => $referral5Amt,
-                                            'type' => 'Robot',
-
-                                        ]);
+                                    $datauserA = User::where('userID', auth()->user()->userID)
+                                        ->get()->first();
+    
+                                    $referralA = $datauserA['referral'];
+                                    $refereeA = $datauserA['username'];
+                                    $referralAAmt = $amount50 * 50 / 100;
+    
+                                    bonus::create([
+                                        'referralID' => 'ADMIN',
+                                        'referralname' => 'ADMIN',
+                                        'referee' =>  $referee,
+                                        'amount' => $referralAAmt,
+                                        'type' => 'Robot',
+                                    ]);
+    
+    
                                         return back()->with('toast_success', 'You Have Renewed Your Robot Offer!!');
                                     } else {
+                                        $datauser5 = User::where('referral',  $referral4)
+                                        ->get()->first();
+    
+                                    $referral5 = $datauser3['referral'];
+                                    $referee5 = $datauser3['username'];
+                                    $referral5Amt = $amount50 * 55 / 100;
+    
+                                    bonus::create([
+                                        'referralID' => 'ADMIN',
+                                        'referralname' => 'ADMIN',
+                                        'referee' =>  $referee,
+                                        'amount' => $referral5Amt,
+                                        'type' => 'Robot',
+                                    ]);
+                                    
                                         return back()->with('toast_success', 'You Have Renewed Your Robot Offer!!');
                                     }
                                 } else {
+                                    $datauser4 = User::where('referral',  $referral3)
+                                    ->get()->first();
+    
+                                $referral4 = $datauser4['referral'];
+                                $referee4 = $datauser4['username'];
+                                $referral4Amt = $amount50 * 60 / 100;
+    
+    
+    
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral4Amt,
+                                    'type' => 'Robot',
+                                ]);
+                                   
                                     return back()->with('toast_success', 'You Have Renewed Your Robot Offer!!');
                                 }
                             } else {
+                                $datauser3 = User::where('referral',  $referral2)
+                                ->get()->first();
+    
+                            $referral3 = $datauser3['referral'];
+                            $referee3 = $datauser3['username'];
+                            $referral3Amt = $amount50 * 70 / 100;
+    
+    
+    
+                            bonus::create([
+                                'referralID' => 'ADMIN',
+                                'referralname' => 'ADMIN',
+                                'referee' =>  $referee,
+                                'amount' => $referral3Amt,
+                                'type' => 'Robot',
+                            ]);
+                                
                                 return back()->with('toast_success', 'You Have Renewed Your Robot Offer!!');
                             }
                         } else {
+                            $datauser2 = User::where('referral',  $referral1)
+                                ->get()->first();
+                            $referral2 = $datauser2['referral'];
+                            $referee2 = $datauser2['username'];
+                            $referral2Amt = $amount50 * 80 / 100;
+        
+                            bonus::create([
+                                'referralID' => 'ADMIN',
+                                'referralname' => 'ADMIN',
+                                'referee' =>  $referee2,
+                                'amount' => $referral2Amt,
+                                'type' => 'Robot',
+                            ]);
                             return back()->with('toast_success', 'You Have Renewed Your Robot Offer!!');
                         }
                     } else {
@@ -582,20 +721,7 @@ class robot extends Controller
                     $dr = DB::table('robots')->where('robotID', $request->id)->first();
 
                     if ($dr->daycounter == 0) {
-                        $datauser1 = User::where('userID', auth()->user()->userID)
-                            ->get()->first();
-
-                        $referral1 = $datauser1['referral'];
-                        $referee = $datauser1['username'];
-                        $referral1Amt = $amount * 100 / 100;
-
-                        bonus::create([
-                            'referralID' => 'ADMIN',
-                            'referralname' => 'ADMIN',
-                            'referee' =>  $referee,
-                            'amount' => $referral1Amt,
-                            'type' => 'Robot',
-                        ]);
+                        
 
                         ModelsRobot::create([
                             'robotID' => $dr->robotID,
@@ -615,7 +741,20 @@ class robot extends Controller
                         DB::table('robots')->where('robotID', $request->id)->update([
                             'daycounter' => 0,
                         ]);
-
+                        $datauser1 = User::where('userID', auth()->user()->userID)
+                        ->get()->first();
+    
+                    $referral1 = $datauser1['referral'];
+                    $referee = $datauser1['username'];
+                    $referral1Amt = $amount50 * 100 / 100;
+    
+                    bonus::create([
+                        'referralID' => 'ADMIN',
+                        'referralname' => 'ADMIN',
+                        'referee' =>  $referee,
+                        'amount' => $referral1Amt,
+                        'type' => 'Robot',
+                    ]);
                         return back()->with('toast_success', 'You Have Renewed Your Robot Offer!!');
                     } else {
 
