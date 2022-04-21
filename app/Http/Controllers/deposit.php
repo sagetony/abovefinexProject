@@ -206,106 +206,131 @@ class deposit extends Controller
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
 
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
 
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
-                                    
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
                                         ->get()->first();
@@ -421,105 +446,130 @@ class deposit extends Controller
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
                     
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
@@ -635,105 +685,130 @@ class deposit extends Controller
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
                     
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
@@ -851,105 +926,130 @@ class deposit extends Controller
 
 
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
@@ -1063,107 +1163,131 @@ class deposit extends Controller
                     ];
 
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
-
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
@@ -1279,105 +1403,130 @@ class deposit extends Controller
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
 
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
@@ -1493,105 +1642,130 @@ class deposit extends Controller
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
 
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)
@@ -1922,105 +2096,130 @@ class deposit extends Controller
                     Mail::to(auth()->user()->email)->send(new EmailFunding($details));
 
                     $datauser1 = User::where('userID', auth()->user()->userID)
+                    ->get()->first();
+
+
+                $referral1 = $datauser1['referral'];
+                $referee = $datauser1['username'];
+                $referral1Amt = $request->amount * 4 / 100;
+
+                $datareferral1 = User::where('refereeID',  $referral1)
+                    ->get()->first();
+                $referralname1 = $datareferral1['username'];
+
+                bonus::create([
+                    'referralID' => $referral1,
+                    'referralname' => $referralname1,
+                    'referee' =>  $referee,
+                    'amount' => $referral1Amt,
+                    'type' => 'Investment',
+                ]);
+
+
+                $datarefs = User::where('refereeID', $referral1)->get()->first();
+                if (User::where('referral', $datarefs['referral'])->exists() && $datarefs['referral'] != 'ADMIN') {
+                    $datauser2 = User::where('referral',  $datarefs['referral'])
+                        ->get()->first();
+                    $referral2 = $datauser2['referral'];
+
+                    $referee2 = $datauser2['username'];
+                    $referral2Amt = $request->amount * 2 / 100;
+
+                    $datareferral2 = User::where('refereeID',  $referral2)
                         ->get()->first();
 
-                    $referral1 = $datauser1['referral'];
-                    $referee = $datauser1['username'];
-                    $referral1Amt = $request->amount * 5 / 100;
-
-                    $datareferral1 = User::where('refereeID',  $referral1)
-                        ->get()->first();
-                    $referralname1 = $datareferral1['username'];
-
+                    $referralname2 = $datareferral2['username'];
                     bonus::create([
-                        'referralID' => $referral1,
-                        'referralname' => $referralname1,
+                        'referralID' => $referral2,
+                        'referralname' => $referralname2,
                         'referee' =>  $referee,
-                        'amount' => $referral1Amt,
+                        'amount' => $referral2Amt,
                         'type' => 'Investment',
                     ]);
-                    if (User::where('referral', $referral1)->exists() && auth()->user()->referral != 'ADMIN') {
-                        $datauser2 = User::where('referral',  $referral1)
+
+
+                    $datarefs2 = User::where('refereeID', $referral2)->get()->first();
+
+                    if (User::where('referral', $datarefs2['referral'])->exists() && $datarefs2['referral'] != 'ADMIN') {
+
+
+                        $datauser3 = User::where('referral',  $datarefs2['referral'])
                             ->get()->first();
 
-                        $referral2 = $datauser2['referral'];
-                        $referee2 = $datauser2['username'];
-                        $referral2Amt = $request->amount * 2 / 100;
-
-                        $datareferral2 = User::where('referral',  $referral2)
+                        $referral3 = $datauser3['referral'];
+                        $referee3 = $datauser3['username'];
+                        $referral3Amt = $request->amount * 2/ 100;
+                        $datareferral = User::where('refereeID',  $referral3)
                             ->get()->first();
-                        $referralname2 = $datareferral2['username'];
+                        $referralname = $datareferral['username'];
 
                         bonus::create([
-                            'referral_id' => $referral2,
-                            'referralname' => $referralname2,
-                            'referee' =>  $referee2,
-                            'amount' => $referral2Amt,
+                            'referralID' => $referral3,
+                            'referralname' => $referralname,
+                            'referee' =>  $referee,
+                            'amount' => $referral3Amt,
                             'type' => 'Investment',
 
                         ]);
+                        $dataref3 = User::where('refereeID', $referral3)->get()->first();
 
-                        if (User::where('referral', $referral2)->exists() && auth()->user()->referral != 'ADMIN') {
+                        if (User::where('referral', $dataref3['referral'])->exists() && $dataref3['referral'] != 'ADMIN') {
 
-                            $datauser3 = User::where('referral',  $referral2)
+                            $datauser4 = User::where('referral',   $dataref3['referral'])
                                 ->get()->first();
 
-                            $referral3 = $datauser3['referral'];
-                            $referee3 = $datauser3['username'];
-                            $referral3Amt = $request->amount * 2 / 100;
-                            $datareferral = User::where('referral',  $referral3)
+                            $referral4 = $datauser4['referral'];
+                            $referee4 = $datauser4['username'];
+                            $referral4Amt = $request->amount * 1 / 100;
+                            $datareferral = User::where('refereeID', $referral4)
                                 ->get()->first();
                             $referralname = $datareferral['username'];
 
                             bonus::create([
-                                'referral_id' => $referral3,
+                                'referralID' => $referral4,
                                 'referralname' => $referralname,
-                                'referee' =>  $referee3,
-                                'amount' => $referral3Amt,
+                                'referee' =>  $referee,
+                                'amount' => $referral4Amt,
                                 'type' => 'Investment',
 
                             ]);
-                            if (User::where('referral', $referral3)->exists() && auth()->user()->referral != 'ADMIN') {
+                            $dataref4 = User::where('refereeID', $referral4)->get()->first();
 
-                                $datauser4 = User::where('referral',  $referral3)
+                            if (User::where('referral', $dataref4['referral'])->exists() && $dataref4['referral'] != 'ADMIN') {
+
+                                $datauser5 = User::where('referral',  $dataref4['referral'])
                                     ->get()->first();
 
-                                $referral4 = $datauser4['referral'];
-                                $referee4 = $datauser4['username'];
-                                $referral4Amt = $request->amount * 1 / 100;
-                                $datareferral = User::where('referral',  $referral4)
+                                $referral5 = $datauser5['referral'];
+                                $referee5 = $datauser5['username'];
+                                $referral5Amt = $request->amount * 1 / 100;
+                                $datareferral = User::where('refereeID',  $referral5)
                                     ->get()->first();
                                 $referralname = $datareferral['username'];
 
                                 bonus::create([
-                                    'referral_id' => $referral4,
+                                    'referralID' => $referral5,
                                     'referralname' => $referralname,
-                                    'referee' =>  $referee4,
-                                    'amount' => $referral4Amt,
-                                    'type' => 'Investment',
+                                    'referee' =>  $referee,
+                                    'amount' => $referral5Amt,
+                                    'type' => 'Robot',
 
                                 ]);
+                                $datauserA = User::where('userID', auth()->user()->userID)
+                                    ->get()->first();
 
-                                if (User::where('referral', $referral4)->exists() && auth()->user()->referral != 'ADMIN') {
+                                $referralA = $datauserA['referral'];
+                                $refereeA = $datauserA['username'];
+                                $referralAAmt = $request->amount * 90 / 100;
 
-                                    $datauser5 = User::where('referral',  $referral4)
-                                        ->get()->first();
-
-                                    $referral5 = $datauser5['referral'];
-                                    $referee5 = $datauser5['username'];
-                                    $referral5Amt = $request->amount * 1 / 100;
-                                    $datareferral = User::where('referral',  $referral5)
-                                        ->get()->first();
-                                    $referralname = $datareferral['username'];
-
-                                    bonus::create([
-                                        'referral_id' => $referral4,
-                                        'referralname' => $referralname,
-                                        'referee' =>  $referee5,
-                                        'amount' => $referral5Amt,
-                                        'type' => 'Investment',
-
-                                    ]);
+                                bonus::create([
+                                    'referralID' => 'ADMIN',
+                                    'referralname' => 'ADMIN',
+                                    'referee' =>  $referee,
+                                    'amount' => $referralAAmt,
+                                    'type' => 'Investment',
+                                ]);
+                                return back()->with('toast_success', 'Investment successful !!');
                                     
                                 } else {
                                     $datauser5 = User::where('referral',  $referral4)

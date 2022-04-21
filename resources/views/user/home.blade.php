@@ -355,7 +355,108 @@
         </div>
     </section>
         
-    
+    <section class="pricing-section p-tb-100">
+        <div class="container">
+            <div class="section-title">
+                <h2>EBH FOREX ACADEMY</h2>
+                <p>Learn from USA certified experts how to trade and/or invest in the Global Financial Markets. Get access to first class forex training, market insights, unique strategies, advance trading tools with mentorship and support.</p>
+            </div>
+        <div class="pricing-box-grid">
+        <div class="pricing-grid-item">
+        <div class="pricing-grid-item-inner">
+        <div class="pricing-item-header">
+        <h3><img src="assets/images/pricing-check.png" alt="icon">FUNDAMENTAL</h3>
+        </div>
+        <div class="pricing-item-amount">
+        <h4><small>$</small>50/N25k</h4>
+        </div>
+        <div class="pricing-item-body">
+        <ul class="pricing-item-list">
+         <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Learn From Module 1 to 2 <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Bonus: PREMIUM SIGNALS</li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 1] IFX: Introduction To Financial Market, Trading & Investment<span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 2] SFX: Social Financial Trading <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+        </ul>
+        <a href="https://t.me/asfxdc">
+            <button class="btn1 orange-gradient btn-with-image">
+                <i class="flaticon-login"></i>
+                <i class="flaticon-login"></i>
+                Get started
+            </button>
+        </a>
+       
+        </div>
+        </div>
+        </div>
+        <div class="pricing-grid-item">
+        <div class="pricing-grid-item-inner">
+        <div class="pricing-item-header">
+        <h3><img src="assets/images/pricing-check.png" alt="icon"> INTERMEDIATE </h3>
+        </div>
+        <div class="pricing-item-amount">
+            <h4><small>$</small>100/N50k</h4>
+        </div>
+        <div class="pricing-item-body">
+            <ul class="pricing-item-list">
+                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Learn From Module 1 to 4 <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+              
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Bonus: TRADING SYSTEM</li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 3] FMX: Forex Margin Trading
+                <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 4] SIX: Stock Index Trading
+                <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+                 <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 5] BOX: Binary Options Trading
+
+                <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+           
+               </ul>
+               <a href="https://t.me/asfxdc">
+                   <button class="btn1 orange-gradient btn-with-image">
+                       <i class="flaticon-login"></i>
+                       <i class="flaticon-login"></i>
+                       Get started
+                   </button>
+               </a>
+              
+        </div>
+        </div>
+        </div>
+        <div class="pricing-grid-item">
+        <div class="pricing-grid-item-inner">
+        <div class="pricing-item-header">
+        <h3><img src="assets/images/pricing-check.png" alt="icon"> MASTERCLASS</h3>
+        </div>
+        <div class="pricing-item-amount">
+            <h4><small>$</small>200/N100k</h4>
+        </div>
+        <div class="pricing-item-body">
+            <ul class="pricing-item-list">
+                <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Learn From Module 1 to 8 <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">Bonus: ROBO TRADER
+               </li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 6] CEX: Crypto Exchange Trading <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 7] AFX: Algo Financial Trading <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               <li><img src="assets/images/pricing-arrow.png" alt="icon" class="pricing-list-arrow">[MODULE 8] PFX: Prop Fund Trading <span class="pricing-list-info"><i class='bx bxs-info-circle'></i></span></li>
+               </ul>
+               <a href="https://t.me/asfxdc">
+                   <button class="btn1 orange-gradient btn-with-image">
+                       <i class="flaticon-login"></i>
+                       <i class="flaticon-login"></i>
+                       Get started
+                   </button>
+               </a>
+        </div>
+       
+        </div>
+        </div>
+        </div>
+        </div>
+        <marquee behavior="" direction=""><h4>NOTE: All Package comes with Live Training, Trading Strategies, Resource Materials, Free Signals and Lifetime Mentorship.
+        </h4></marquee>
+    </section>
+        
     
     <section class="home-facility-section">
     <div class="home-facility-animation">
